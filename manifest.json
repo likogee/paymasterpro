@@ -3,10 +3,10 @@
   "name": "PayMaster Pro • Hire Purchase Tracker",
   "short_name": "PayMaster Pro",
   "description": "Offline hire purchase and installment payment tracker for business owners. Track agreements, payments, balances, and generate professional PDF reports — all without internet. Your data never leaves your device.",
-  "start_url": "./",
-  "scope": "./",
-  "display": "standalone",
-  "display_override": ["standalone", "fullscreen", "minimal-ui"],
+  "start_url": "/paymasterpro/index.html",
+  "scope": "/paymasterpro/",
+  "display": "fullscreen",
+  "display_override": ["fullscreen", "standalone", "minimal-ui"],
   "orientation": "portrait",
   "background_color": "#070a14",
   "theme_color": "#10b981",
@@ -14,12 +14,12 @@
   "dir": "ltr",
   "categories": ["business", "finance", "productivity"],
   "icons": [
-    { "src": "./icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any" },
-    { "src": "./icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any" },
-    { "src": "./icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" }
+    { "src": "/paymasterpro/icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any" },
+    { "src": "/paymasterpro/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any" },
+    { "src": "/paymasterpro/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" }
   ],
   "screenshots": [
-    { "src": "./icon-512.png", "sizes": "512x512", "type": "image/png", "form_factor": "narrow", "label": "PayMaster Pro dashboard" }
+    { "src": "/paymasterpro/icon-512.png", "sizes": "512x512", "type": "image/png", "form_factor": "narrow", "label": "PayMaster Pro dashboard" }
   ],
   "prefer_related_applications": false,
   "iarc_rating_id": ""
