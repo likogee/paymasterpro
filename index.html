@@ -46,9 +46,6 @@
   </script>
 
   <style>
-    /* ============================================================
-       RESET & VARIABLES
-       ============================================================ */
     * {
       margin: 0;
       padding: 0;
@@ -57,7 +54,59 @@
       -webkit-tap-highlight-color: transparent;
     }
 
+    /* ============================================================
+       LIGHT THEME (default)
+       ============================================================ */
     :root {
+      --bg: #f5f7fb;
+      --bg-elevated: #ffffff;
+      --surface: #ffffff;
+      --surface-2: #f8fafc;
+      --surface-3: #eef2f8;
+      --border: rgba(15, 23, 42, 0.08);
+      --border-strong: rgba(15, 23, 42, 0.12);
+      --divider: rgba(15, 23, 42, 0.06);
+
+      --text: #0a0f1f;
+      --text-2: #475569;
+      --text-3: #94a3b8;
+
+      --primary: #10b981;
+      --primary-2: #059669;
+      --primary-soft: rgba(16, 185, 129, 0.1);
+      --primary-gradient: linear-gradient(135deg, #10b981 0%, #059669 100%);
+
+      --accent: #f59e0b;
+      --accent-soft: rgba(245, 158, 11, 0.1);
+      --accent-gradient: linear-gradient(135deg, #fbbf24 0%, #f59e0b 100%);
+
+      --danger: #ef4444;
+      --danger-soft: rgba(239, 68, 68, 0.1);
+
+      --info: #3b82f6;
+      --info-soft: rgba(59, 130, 246, 0.1);
+
+      --shadow-sm: 0 1px 2px rgba(15, 23, 42, 0.04), 0 1px 3px rgba(15, 23, 42, 0.03);
+      --shadow-md: 0 4px 12px rgba(15, 23, 42, 0.06), 0 2px 4px rgba(15, 23, 42, 0.04);
+      --shadow-lg: 0 12px 32px rgba(15, 23, 42, 0.1), 0 4px 8px rgba(15, 23, 42, 0.04);
+      --shadow-xl: 0 24px 64px rgba(15, 23, 42, 0.16), 0 8px 16px rgba(15, 23, 42, 0.06);
+      --shadow-primary: 0 8px 24px rgba(16, 185, 129, 0.28);
+
+      --radius-sm: 12px;
+      --radius: 16px;
+      --radius-lg: 20px;
+      --radius-xl: 28px;
+      --radius-full: 999px;
+
+      --sidebar-width: 72px;
+      --transition: 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+      --transition-spring: 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
+
+    /* ============================================================
+       DARK THEME
+       ============================================================ */
+    body.dark {
       --bg: #070a14;
       --bg-elevated: #0d1220;
       --surface: #131a2c;
@@ -91,17 +140,9 @@
       --shadow-lg: 0 12px 32px rgba(0, 0, 0, 0.5), 0 4px 8px rgba(0, 0, 0, 0.3);
       --shadow-xl: 0 24px 64px rgba(0, 0, 0, 0.6), 0 8px 16px rgba(0, 0, 0, 0.4);
       --shadow-primary: 0 8px 32px rgba(16, 185, 129, 0.4);
-
-      --radius-sm: 12px;
-      --radius: 16px;
-      --radius-lg: 20px;
-      --radius-xl: 28px;
-      --radius-full: 999px;
-
-      --sidebar-width: 72px;
-      --transition: 0.25s cubic-bezier(0.4, 0, 0.2, 1);
-      --transition-spring: 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
     }
+
+    html { -webkit-text-size-adjust: 100%; scroll-behavior: smooth; }
 
     body {
       -webkit-font-smoothing: antialiased;
@@ -115,6 +156,7 @@
       padding-bottom: env(safe-area-inset-bottom, 0);
       overscroll-behavior-y: contain;
       position: relative;
+      transition: background 0.3s ease, color 0.3s ease;
     }
 
     input, select, textarea { user-select: auto; -webkit-user-select: text; }
@@ -125,7 +167,9 @@
       inset: 0;
       pointer-events: none;
       z-index: 0;
+      display: none;
     }
+    body.dark .ambient-glow { display: block; }
     .ambient-glow::before {
       content: '';
       position: absolute;
@@ -142,6 +186,24 @@
     }
 
     body.standalone-mode .pwa-install-overlay { display: none !important; }
+
+    /* ============================================================
+       SIDEBAR BACKDROP (mobile)
+       ============================================================ */
+    .sidebar-backdrop {
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.5);
+      backdrop-filter: blur(4px);
+      z-index: 998;
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity 0.3s ease, visibility 0.3s ease;
+    }
+    .sidebar-backdrop.visible {
+      opacity: 1;
+      visibility: visible;
+    }
 
     /* ============================================================
        PWA INSTALL OVERLAY
@@ -266,9 +328,9 @@
       top: 0;
       bottom: 0;
       width: var(--sidebar-width);
-      background: #0d1220;
+      background: var(--bg-elevated);
       border-right: 1px solid var(--border);
-      z-index: 1000;
+      z-index: 999;
       display: flex;
       flex-direction: column;
       align-items: center;
@@ -304,9 +366,9 @@
       width: 28px;
       height: 28px;
       border-radius: 9px;
-      background: rgba(239, 68, 68, 0.12);
+      background: var(--danger-soft);
       border: 1px solid rgba(239, 68, 68, 0.2);
-      color: #ef4444;
+      color: var(--danger);
       font-size: 0.9rem;
       font-weight: 700;
       cursor: pointer;
@@ -320,7 +382,7 @@
     }
     .sidebar-close-btn:hover,
     .sidebar-close-btn:active {
-      background: #ef4444;
+      background: var(--danger);
       color: white;
       transform: rotate(90deg) scale(1.05);
     }
@@ -421,7 +483,7 @@
       align-items: center;
       justify-content: center;
       transition: var(--transition);
-      z-index: 999;
+      z-index: 1001;
       outline: none;
       font-family: inherit;
     }
@@ -549,7 +611,7 @@
       margin-bottom: 16px;
       border: 1px solid var(--border);
       box-shadow: var(--shadow-sm);
-      transition: box-shadow 0.3s, transform 0.3s, border-color 0.3s;
+      transition: box-shadow 0.3s, transform 0.3s, border-color 0.3s, background 0.3s;
       position: relative;
       overflow: hidden;
     }
@@ -1285,7 +1347,7 @@
     .reminder-warning { color: var(--danger); font-weight: 700; }
 
     /* ============================================================
-       CHART — critical fix for PWA rendering
+       CHART
        ============================================================ */
     .chart-wrapper {
       position: relative;
@@ -1935,7 +1997,7 @@
     .backup-download-link { display: none; }
 
     /* ============================================================
-       RESPONSIVE — narrow phones (portrait)
+       RESPONSIVE — narrow phones
        ============================================================ */
     @media (max-width: 640px) {
       :root { --sidebar-width: 62px; }
@@ -1988,9 +2050,6 @@
       .chart-wrapper { height: 220px; min-height: 220px; }
     }
 
-    /* ============================================================
-       RESPONSIVE — very small phones
-       ============================================================ */
     @media (max-width: 400px) {
       .lock-logo { width: 78px; height: 78px; font-size: 2.4rem; }
       .lock-app-name { font-size: 1.9rem; }
@@ -2027,9 +2086,6 @@
       body.sidebar-closed .sticky-header .greeting { padding-left: 52px; }
     }
 
-    /* ============================================================
-       RESPONSIVE — tablets and landscape phones
-       ============================================================ */
     @media (min-width: 641px) and (max-width: 900px) {
       .main-content {
         padding: 22px 28px 100px;
@@ -2038,9 +2094,6 @@
       .chart-wrapper { height: 280px; min-height: 280px; }
     }
 
-    /* ============================================================
-       RESPONSIVE — desktop
-       ============================================================ */
     @media (min-width: 901px) {
       .main-content {
         padding: 24px 32px 100px;
@@ -2064,11 +2117,161 @@
       border-radius: 10px;
     }
     ::-webkit-scrollbar-thumb:hover { background: var(--text-3); }
+/* ============================================================
+   INSTALL GUIDE POPUP — auto-detects user's device
+   ============================================================ */
+.install-guide-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 45000;
+  background: rgba(5, 8, 18, 0.75);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  animation: fadeIn 0.3s ease;
+}
+.install-guide-overlay.visible { display: flex; }
+
+.install-guide-card {
+  background: var(--bg-elevated);
+  border-radius: var(--radius-xl);
+  padding: 32px 26px 26px;
+  max-width: 440px;
+  width: 100%;
+  max-height: 85vh;
+  overflow-y: auto;
+  border: 1px solid var(--border);
+  box-shadow: var(--shadow-xl);
+  position: relative;
+  animation: slideUp 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
+  color: var(--text);
+}
+.install-guide-card .close-btn {
+  position: sticky;
+  top: 0;
+  float: right;
+  background: var(--surface-3);
+  border: none;
+  border-radius: 12px;
+  width: 34px;
+  height: 34px;
+  font-size: 1rem;
+  color: var(--text-2);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: var(--transition);
+  outline: none;
+  font-family: inherit;
+  z-index: 10;
+}
+.install-guide-card .close-btn:hover {
+  background: var(--danger-soft);
+  color: var(--danger);
+  transform: rotate(90deg);
+}
+.install-guide-card .guide-icon {
+  font-size: 3rem;
+  text-align: center;
+  display: block;
+  margin-bottom: 12px;
+  clear: both;
+  -webkit-user-select: none;
+  user-select: none;
+}
+.install-guide-card h2 {
+  font-size: 1.3rem;
+  font-weight: 800;
+  text-align: center;
+  margin-bottom: 6px;
+  letter-spacing: -0.02em;
+  color: var(--text);
+}
+.install-guide-card .guide-sub {
+  text-align: center;
+  font-size: 0.85rem;
+  color: var(--text-2);
+  margin-bottom: 20px;
+  line-height: 1.6;
+}
+.install-guide-card .guide-step {
+  display: flex;
+  gap: 14px;
+  padding: 12px 0;
+  border-bottom: 1px solid var(--divider);
+  align-items: flex-start;
+}
+.install-guide-card .guide-step:last-of-type {
+  border-bottom: none;
+}
+.install-guide-card .step-num {
+  flex-shrink: 0;
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  background: var(--primary-gradient);
+  color: white;
+  font-size: 0.75rem;
+  font-weight: 800;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 2px;
+}
+.install-guide-card .step-text {
+  font-size: 0.85rem;
+  color: var(--text);
+  line-height: 1.65;
+  flex: 1;
+}
+.install-guide-card .step-text strong {
+  color: var(--primary);
+  font-weight: 700;
+}
+.install-guide-card .guide-actions {
+  display: flex;
+  gap: 10px;
+  margin-top: 20px;
+}
+.install-guide-card .guide-actions button {
+  margin-top: 0;
+  flex: 1;
+  padding: 12px;
+  font-size: 0.85rem;
+}
   </style>
 </head>
 <body>
 
   <div class="ambient-glow"></div>
+<!-- ============================================================
+     AUTO-DETECTING INSTALL GUIDE POPUP
+     ============================================================ -->
+<div class="install-guide-overlay" id="installGuideOverlay">
+  <div class="install-guide-card" id="installGuideCard">
+    <button class="close-btn" onclick="dismissInstallGuide()" aria-label="Close">✕</button>
+    <span class="guide-icon" id="guideIcon">📱</span>
+    <h2 id="guideTitle">Install PayMaster Pro</h2>
+    <p class="guide-sub" id="guideSubtitle">Get the full app experience — no browser bar, works offline.</p>
+    <div id="guideSteps">
+      <!-- Filled dynamically by JavaScript -->
+    </div>
+    <div class="guide-actions">
+      <button id="guidePrimaryBtn" onclick="handleGuidePrimary()" style="background:var(--primary-gradient);color:white;">
+        Install Now
+      </button>
+      <button class="outline" onclick="dismissInstallGuide()">
+        Not Now
+      </button>
+    </div>
+  </div>
+</div>
+
+  <div class="sidebar-backdrop" id="sidebarBackdrop" onclick="toggleSidebar()"></div>
 
   <div class="pwa-install-overlay" id="pwaInstallOverlay">
     <div class="pwa-install-box">
@@ -2581,7 +2784,7 @@
         <div class="about-card">
           <div class="about-logo">💼</div>
           <div class="about-title">PayMaster Pro</div>
-          <div class="about-version">Version 13.0 • Single-User License</div>
+          <div class="about-version">Version 14.0 • Single-User License</div>
           <div class="about-license-badge">✓ Offline-First</div>
           <p class="about-tagline">All your data stays on your device. No cloud, no subscriptions, no tracking.</p>
           <div class="about-features">
@@ -2692,7 +2895,7 @@
         </div>
       </div>
 
-      <footer>PAYMASTER PRO v13.0 • OFFLINE-FIRST • ALL DATA STORED LOCALLY</footer>
+      <footer>PAYMASTER PRO v14.0 • OFFLINE-FIRST • ALL DATA STORED LOCALLY</footer>
     </div>
   </div>
 
@@ -2854,6 +3057,7 @@
     const rpCancelBtn = document.getElementById('rpCancelBtn');
     const appSidebar = document.getElementById('appSidebar');
     const floatingMenuBtn = document.getElementById('floatingMenuBtn');
+    const sidebarBackdrop = document.getElementById('sidebarBackdrop');
 
     const editRecordModal = document.getElementById('editRecordModal');
     const editRecordDate = document.getElementById('editRecordDate');
@@ -3736,16 +3940,31 @@
       reportEndDate.value = new Date(n.getFullYear(), n.getMonth() + 1, 0).toISOString().slice(0, 10);
     }
 
+    /* ============================================================
+       THEME TOGGLE — light / dark mode restored
+       ============================================================ */
     function toggleTheme() {
-      document.body.classList.toggle('dark');
-      const d = document.body.classList.contains('dark');
-      themeToggle.textContent = d ? '☀️' : '🌙';
-      localStorage.setItem('pmTheme', d ? 'dark' : 'light');
+      const isDark = document.body.classList.toggle('dark');
+      themeToggle.textContent = isDark ? '☀️' : '🌙';
+      localStorage.setItem('pmTheme', isDark ? 'dark' : 'light');
+      const metaTheme = document.querySelector('meta[name="theme-color"]');
+      if (metaTheme) metaTheme.setAttribute('content', isDark ? '#070a14' : '#f5f7fb');
       if (progressChart) updateChartForCurrent();
     }
+
     function loadTheme() {
-      document.body.classList.add('dark');
-      themeToggle.textContent = '☀️';
+      const saved = localStorage.getItem('pmTheme');
+      if (saved === 'light') {
+        document.body.classList.remove('dark');
+        themeToggle.textContent = '🌙';
+        const metaTheme = document.querySelector('meta[name="theme-color"]');
+        if (metaTheme) metaTheme.setAttribute('content', '#f5f7fb');
+      } else {
+        document.body.classList.add('dark');
+        themeToggle.textContent = '☀️';
+        const metaTheme = document.querySelector('meta[name="theme-color"]');
+        if (metaTheme) metaTheme.setAttribute('content', '#070a14');
+      }
     }
 
     function clearSearchFilters() {
@@ -3765,7 +3984,7 @@
         agreements: agreements,
         currentAgreementId: currentAgreementId,
         currencySymbol: currentCurrencySymbol,
-        theme: 'dark'
+        theme: document.body.classList.contains('dark') ? 'dark' : 'light'
       };
       const jsonStr = JSON.stringify(backup, null, 2);
       const blob = new Blob([jsonStr], { type: 'application/json' });
@@ -3787,7 +4006,12 @@
             agreements = backup.agreements;
             currentAgreementId = backup.currentAgreementId || Object.keys(agreements)[0];
             currentCurrencySymbol = backup.currencySymbol || '$';
-            document.body.classList.add('dark');
+            if (backup.theme === 'light') {
+              document.body.classList.remove('dark');
+            } else {
+              document.body.classList.add('dark');
+            }
+            localStorage.setItem('pmTheme', backup.theme || 'dark');
             saveAgreements(); renderAgreementsList(); loadCurrentAgreementData();
             updatePreviewForCurrent(); updateChartForCurrent(); loadScheduleIntoForm();
             updateReminderDisplay(); refreshAllCurrencyDisplays();
@@ -3927,18 +4151,37 @@
     }
     setTimeout(() => { if (!loaderHidden) hideLoader(); }, 3000);
 
+    /* ============================================================
+       SIDEBAR — auto-close after menu selection
+       ============================================================ */
     function toggleSidebar() {
       const isHidden = appSidebar.classList.toggle('sidebar-hidden');
       document.body.classList.toggle('sidebar-closed', isHidden);
       floatingMenuBtn.classList.toggle('visible', isHidden);
+      sidebarBackdrop.classList.toggle('visible', !isHidden);
       localStorage.setItem('pmSidebarHidden', isHidden ? 'true' : 'false');
     }
-    function restoreSidebarState() {
-      const isHidden = localStorage.getItem('pmSidebarHidden') === 'true';
-      if (isHidden) {
+
+    function closeSidebarIfMobile() {
+      if (window.innerWidth <= 900) {
         appSidebar.classList.add('sidebar-hidden');
         document.body.classList.add('sidebar-closed');
         floatingMenuBtn.classList.add('visible');
+        sidebarBackdrop.classList.remove('visible');
+        localStorage.setItem('pmSidebarHidden', 'true');
+      }
+    }
+
+    function restoreSidebarState() {
+      const isHidden = localStorage.getItem('pmSidebarHidden') === 'true';
+      if (isHidden || window.innerWidth <= 900) {
+        appSidebar.classList.add('sidebar-hidden');
+        document.body.classList.add('sidebar-closed');
+        floatingMenuBtn.classList.add('visible');
+      } else {
+        appSidebar.classList.remove('sidebar-hidden');
+        document.body.classList.remove('sidebar-closed');
+        floatingMenuBtn.classList.remove('visible');
       }
     }
 
@@ -3982,17 +4225,28 @@
       setTimeout(() => { updateChartForCurrent(); }, 30);
     }
 
+    /* ============================================================
+       NAVIGATION — with auto-close on mobile
+       ============================================================ */
     function switchSection(sectionId) {
       document.querySelectorAll('.section').forEach(el => el.classList.remove('active'));
       const target = document.getElementById('section-' + sectionId);
       if (target) target.classList.add('active');
+
       document.querySelectorAll('.nav-icons button').forEach(el => el.classList.remove('active'));
       const btn = document.querySelector('.nav-icons button[data-section="' + sectionId + '"]');
       if (btn) btn.classList.add('active');
+
       if (sectionId === 'dashboard') setTimeout(() => { updateChartForCurrent(); updateDashboardStats(); }, 60);
       if (sectionId === 'history' && currentAgreementId && agreements[currentAgreementId]) {
         renderHistoryTable(agreements[currentAgreementId].records);
       }
+
+      // Auto-close sidebar on mobile for full-screen view
+      closeSidebarIfMobile();
+
+      // Scroll to top after switching
+      setTimeout(() => { window.scrollTo({ top: 0, behavior: 'smooth' }); }, 50);
     }
 
     function bindEvents() {
@@ -4095,6 +4349,23 @@
       headerAgreementName.addEventListener('click', function(e) {
         if (e.target === this) switchSection('agreements');
       });
+
+      // Close sidebar when clicking backdrop or pressing Escape
+      document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape' && !appSidebar.classList.contains('sidebar-hidden')) {
+          toggleSidebar();
+        }
+      });
+
+      // Close sidebar when tapping outside on mobile
+      document.addEventListener('click', function(e) {
+        if (window.innerWidth <= 900 &&
+            !appSidebar.classList.contains('sidebar-hidden') &&
+            !appSidebar.contains(e.target) &&
+            !floatingMenuBtn.contains(e.target)) {
+          toggleSidebar();
+        }
+      });
     }
 
     function initMainApp() {
@@ -4140,6 +4411,182 @@
     document.getElementById('passwordInput').addEventListener('keypress', function(e) {
       if (e.key === 'Enter') handlePasswordSubmit();
     });
+// =====================================================================
+//  AUTO-DETECTING INSTALL GUIDE
+//  Shows the right instructions for the user's device
+// =====================================================================
+function detectPlatform() {
+  const ua = navigator.userAgent || '';
+  const isIOS = /iPhone|iPad|iPod/i.test(ua) ||
+                (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
+  const isAndroid = /Android/i.test(ua);
+  const isWindows = /Windows/i.test(ua);
+  const isMac = /Macintosh|Mac OS X/i.test(ua) && !isIOS;
+  const isLinux = /Linux/i.test(ua) && !isAndroid;
+  const isChromeOS = /CrOS/i.test(ua);
+  return { isIOS, isAndroid, isWindows, isMac, isLinux, isChromeOS };
+}
+
+function renderInstallGuide() {
+  const p = detectPlatform();
+  const icon = document.getElementById('guideIcon');
+  const title = document.getElementById('guideTitle');
+  const sub = document.getElementById('guideSubtitle');
+  const steps = document.getElementById('guideSteps');
+  const primary = document.getElementById('guidePrimaryBtn');
+
+  let html = '';
+  let primaryLabel = 'Install Now';
+  let primaryAction = 'default';
+
+  if (p.isIOS) {
+    icon.textContent = '🍎';
+    title.textContent = 'Install on iPhone / iPad';
+    sub.textContent = 'Apple doesn\'t allow APK installs — but Safari gives you the same fullscreen app experience.';
+    html = `
+      <div class="guide-step">
+        <div class="step-num">1</div>
+        <div class="step-text">Tap the <strong>Share</strong> button at the bottom of Safari.</div>
+      </div>
+      <div class="guide-step">
+        <div class="step-num">2</div>
+        <div class="step-text">Scroll down and tap <strong>"Add to Home Screen"</strong>.</div>
+      </div>
+      <div class="guide-step">
+        <div class="step-num">3</div>
+        <div class="step-text">Name it <strong>PayMaster Pro</strong> → tap <strong>Add</strong>.</div>
+      </div>
+      <div class="guide-step">
+        <div class="step-num">4</div>
+        <div class="step-text">Open the new icon from your home screen — it runs fullscreen, offline.</div>
+      </div>
+    `;
+    primaryLabel = 'Got it';
+    primaryAction = 'dismiss';
+  } else if (p.isAndroid) {
+    icon.textContent = '🤖';
+    title.textContent = 'Install on Android';
+    sub.textContent = 'Get the full app experience — no browser bar.';
+    html = `
+      <div class="guide-step">
+        <div class="step-num">1</div>
+        <div class="step-text">Tap the <strong>⋮ menu</strong> in Chrome (top right).</div>
+      </div>
+      <div class="guide-step">
+        <div class="step-num">2</div>
+        <div class="step-text">Tap <strong>"Install app"</strong>. If not available, choose <strong>"Add to Home screen"</strong>.</div>
+      </div>
+      <div class="guide-step">
+        <div class="step-num">3</div>
+        <div class="step-text">Confirm → the app appears on your home screen.</div>
+      </div>
+      <div class="guide-step">
+        <div class="step-num">4</div>
+        <div class="step-text">For the best experience, use the <strong>APK</strong> from your Selar download instead — it opens with no browser at all.</div>
+      </div>
+    `;
+    primaryLabel = 'Install App';
+    primaryAction = 'prompt';
+  } else if (p.isWindows || p.isMac || p.isLinux || p.isChromeOS) {
+    icon.textContent = '💻';
+    title.textContent = 'Install on Desktop';
+    sub.textContent = 'Install PayMaster Pro as a desktop app with its own window and icon.';
+    html = `
+      <div class="guide-step">
+        <div class="step-num">1</div>
+        <div class="step-text">Look for the <strong>install icon</strong> in your browser's address bar (a small monitor with a down arrow).</div>
+      </div>
+      <div class="guide-step">
+        <div class="step-num">2</div>
+        <div class="step-text">If you don't see it, open the browser menu (⋮ or •••) → <strong>"Install PayMaster Pro"</strong>.</div>
+      </div>
+      <div class="guide-step">
+        <div class="step-num">3</div>
+        <div class="step-text">Confirm. The app installs to your Start Menu / Applications folder.</div>
+      </div>
+      <div class="guide-step">
+        <div class="step-num">4</div>
+        <div class="step-text">Open it from there any time — no browser bar, works offline.</div>
+      </div>
+    `;
+    primaryLabel = 'Install App';
+    primaryAction = 'prompt';
+  } else {
+    // Fallback
+    icon.textContent = '📲';
+    title.textContent = 'Install PayMaster Pro';
+    sub.textContent = 'Install to your device for the fullscreen app experience.';
+    html = `
+      <div class="guide-step">
+        <div class="step-num">1</div>
+        <div class="step-text">Open your browser menu and look for <strong>"Install app"</strong> or <strong>"Add to Home screen"</strong>.</div>
+      </div>
+      <div class="guide-step">
+        <div class="step-num">2</div>
+        <div class="step-text">Tap it and confirm. The app opens fullscreen from your home screen or app list.</div>
+      </div>
+    `;
+  }
+
+  steps.innerHTML = html;
+  primary.textContent = primaryLabel;
+  primary.dataset.action = primaryAction;
+}
+
+function handleGuidePrimary() {
+  const primary = document.getElementById('guidePrimaryBtn');
+  const action = primary.dataset.action;
+
+  if (action === 'dismiss') {
+    dismissInstallGuide();
+    return;
+  }
+
+  if (action === 'prompt' && deferredPrompt) {
+    // Trigger the native install prompt
+    deferredPrompt.prompt();
+    deferredPrompt.userChoice.then(function(choice) {
+      if (choice.outcome === 'accepted') {
+        showToast('🎉 Installing...');
+        dismissInstallGuide();
+      } else {
+        showToast('You can install anytime from the browser menu.');
+      }
+      deferredPrompt = null;
+    });
+    return;
+  }
+
+  // Fallback — just dismiss
+  dismissInstallGuide();
+}
+
+function dismissInstallGuide() {
+  const overlay = document.getElementById('installGuideOverlay');
+  if (overlay) overlay.classList.remove('visible');
+  try { localStorage.setItem('pmInstallGuideSeen', 'true'); } catch (e) {}
+}
+
+function maybeShowInstallGuide() {
+  // Don't show if:
+  //  - Already in standalone mode (installed)
+  //  - User has already seen it
+  //  - User previously skipped the PWA install overlay
+  if (isStandalone()) return;
+  try {
+    if (localStorage.getItem('pmInstallGuideSeen') === 'true') return;
+    if (localStorage.getItem('pmInstallSkipped') === 'true') return;
+  } catch (e) {}
+
+  renderInstallGuide();
+  const overlay = document.getElementById('installGuideOverlay');
+  if (overlay) overlay.classList.add('visible');
+}
+
+// Trigger the guide a few seconds after the app is unlocked
+setTimeout(function() {
+  try { maybeShowInstallGuide(); } catch (e) {}
+}, 2500);
   </script>
 </body>
 </html>
