@@ -3,13 +3,13 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, user-scalable=no" />
-  <title>PayMaster Pro</title>
+  <title>PayPlan Ledger</title>
   <meta name="theme-color" content="#070a14" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
-  <meta name="apple-mobile-web-app-title" content="PayMaster Pro" />
+  <meta name="apple-mobile-web-app-title" content="PayPlan Ledger" />
   <meta name="mobile-web-app-capable" content="yes" />
-  <meta name="application-name" content="PayMaster Pro" />
+  <meta name="application-name" content="PayPlan Ledger" />
   <meta name="format-detection" content="telephone=no" />
   <meta name="description" content="Offline hire purchase and installment payment tracker." />
   <link rel="icon" type="image/png" href="./icon-192.png" />
@@ -54,9 +54,6 @@
       -webkit-tap-highlight-color: transparent;
     }
 
-    /* ============================================================
-       LIGHT THEME (default)
-       ============================================================ */
     :root {
       --bg: #f5f7fb;
       --bg-elevated: #ffffff;
@@ -66,46 +63,35 @@
       --border: rgba(15, 23, 42, 0.08);
       --border-strong: rgba(15, 23, 42, 0.12);
       --divider: rgba(15, 23, 42, 0.06);
-
       --text: #0a0f1f;
       --text-2: #475569;
       --text-3: #94a3b8;
-
       --primary: #10b981;
       --primary-2: #059669;
       --primary-soft: rgba(16, 185, 129, 0.1);
       --primary-gradient: linear-gradient(135deg, #10b981 0%, #059669 100%);
-
       --accent: #f59e0b;
       --accent-soft: rgba(245, 158, 11, 0.1);
       --accent-gradient: linear-gradient(135deg, #fbbf24 0%, #f59e0b 100%);
-
       --danger: #ef4444;
       --danger-soft: rgba(239, 68, 68, 0.1);
-
       --info: #3b82f6;
       --info-soft: rgba(59, 130, 246, 0.1);
-
       --shadow-sm: 0 1px 2px rgba(15, 23, 42, 0.04), 0 1px 3px rgba(15, 23, 42, 0.03);
       --shadow-md: 0 4px 12px rgba(15, 23, 42, 0.06), 0 2px 4px rgba(15, 23, 42, 0.04);
       --shadow-lg: 0 12px 32px rgba(15, 23, 42, 0.1), 0 4px 8px rgba(15, 23, 42, 0.04);
       --shadow-xl: 0 24px 64px rgba(15, 23, 42, 0.16), 0 8px 16px rgba(15, 23, 42, 0.06);
       --shadow-primary: 0 8px 24px rgba(16, 185, 129, 0.28);
-
       --radius-sm: 12px;
       --radius: 16px;
       --radius-lg: 20px;
       --radius-xl: 28px;
       --radius-full: 999px;
-
       --sidebar-width: 72px;
       --transition: 0.25s cubic-bezier(0.4, 0, 0.2, 1);
       --transition-spring: 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
     }
 
-    /* ============================================================
-       DARK THEME
-       ============================================================ */
     body.dark {
       --bg: #070a14;
       --bg-elevated: #0d1220;
@@ -115,26 +101,20 @@
       --border: rgba(255, 255, 255, 0.08);
       --border-strong: rgba(255, 255, 255, 0.14);
       --divider: rgba(255, 255, 255, 0.06);
-
       --text: #f1f5f9;
       --text-2: #94a3b8;
       --text-3: #64748b;
-
       --primary: #10b981;
       --primary-2: #34d399;
       --primary-soft: rgba(16, 185, 129, 0.14);
       --primary-gradient: linear-gradient(135deg, #10b981 0%, #059669 100%);
-
       --accent: #fbbf24;
       --accent-soft: rgba(251, 191, 36, 0.14);
       --accent-gradient: linear-gradient(135deg, #fbbf24 0%, #f59e0b 100%);
-
       --danger: #f87171;
       --danger-soft: rgba(248, 113, 113, 0.14);
-
       --info: #60a5fa;
       --info-soft: rgba(96, 165, 250, 0.14);
-
       --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.4), 0 1px 3px rgba(0, 0, 0, 0.3);
       --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.4), 0 2px 4px rgba(0, 0, 0, 0.3);
       --shadow-lg: 0 12px 32px rgba(0, 0, 0, 0.5), 0 4px 8px rgba(0, 0, 0, 0.3);
@@ -185,11 +165,8 @@
       background: radial-gradient(circle, rgba(251, 191, 36, 0.06), transparent 70%);
     }
 
-    body.standalone-mode .pwa-install-overlay { display: none !important; }
+    body.standalone-mode .pwa-install-toast { display: none !important; }
 
-    /* ============================================================
-       SIDEBAR BACKDROP (mobile)
-       ============================================================ */
     .sidebar-backdrop {
       position: fixed;
       inset: 0;
@@ -200,128 +177,82 @@
       visibility: hidden;
       transition: opacity 0.3s ease, visibility 0.3s ease;
     }
-    .sidebar-backdrop.visible {
-      opacity: 1;
-      visibility: visible;
-    }
+    .sidebar-backdrop.visible { opacity: 1; visibility: visible; }
 
-    /* ============================================================
-       PWA INSTALL OVERLAY
-       ============================================================ */
-    .pwa-install-overlay {
+    .pwa-install-toast {
       position: fixed;
-      inset: 0;
-      z-index: 99999;
-      background: radial-gradient(ellipse at 30% 20%, #0a0f1f, #050812 70%);
+      left: 12px;
+      right: 12px;
+      bottom: 12px;
+      z-index: 45000;
+      background: linear-gradient(180deg, rgba(19, 26, 44, 0.98) 0%, rgba(13, 18, 32, 0.98) 100%);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 20px;
+      padding: 14px 16px;
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.7), inset 0 1px 0 rgba(255, 255, 255, 0.06);
+      color: #f1f5f9;
       display: none;
       align-items: center;
-      justify-content: center;
-      padding: 24px;
+      gap: 12px;
+      max-width: 460px;
+      margin: 0 auto;
+      animation: pwaToastIn 0.4s cubic-bezier(0.34, 1.4, 0.64, 1);
     }
-    .pwa-install-overlay.visible { display: flex; }
-    .pwa-install-box {
-      background: linear-gradient(180deg, rgba(19, 26, 44, 0.98) 0%, rgba(13, 18, 32, 0.98) 100%);
-      border: 1px solid rgba(255, 255, 255, 0.08);
-      border-radius: 32px;
-      padding: 40px 32px 32px;
-      max-width: 440px;
-      width: 100%;
-      text-align: center;
-      box-shadow: 0 32px 96px rgba(0, 0, 0, 0.8), inset 0 1px 0 rgba(255, 255, 255, 0.05);
-      color: #f1f5f9;
-      position: relative;
-      overflow: hidden;
-    }
-    .pwa-install-box::before {
-      content: '';
-      position: absolute;
-      top: -50%; left: -50%;
-      width: 200%; height: 200%;
-      background: radial-gradient(circle, rgba(16, 185, 129, 0.15), transparent 40%);
-      pointer-events: none;
-    }
-    .pwa-install-box .pwa-logo {
-      width: 96px; height: 96px;
+    .pwa-install-toast.visible { display: flex; }
+    .pwa-install-toast.hiding { animation: pwaToastOut 0.3s ease forwards; }
+    @keyframes pwaToastIn { from { transform: translateY(120%); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
+    @keyframes pwaToastOut { to { transform: translateY(120%); opacity: 0; } }
+
+    .pwa-toast-icon {
+      width: 44px;
+      height: 44px;
       background: var(--primary-gradient);
-      border-radius: 28px;
-      display: inline-flex;
+      border-radius: 13px;
+      display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 3rem;
-      color: white;
-      margin-bottom: 20px;
-      box-shadow: 0 16px 48px rgba(16, 185, 129, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.2);
-      animation: logoPulse 3s ease-in-out infinite;
-      position: relative;
+      font-size: 1.4rem;
+      flex-shrink: 0;
+      box-shadow: 0 8px 20px rgba(16, 185, 129, 0.35);
     }
-    @keyframes logoPulse {
-      0%, 100% { box-shadow: 0 16px 48px rgba(16, 185, 129, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.2); }
-      50% { box-shadow: 0 20px 60px rgba(16, 185, 129, 0.7), inset 0 1px 0 rgba(255, 255, 255, 0.2); }
-    }
-    .pwa-install-box h2 {
-      font-size: 1.6rem;
+    .pwa-toast-body { flex: 1; min-width: 0; }
+    .pwa-toast-title {
+      font-size: 0.86rem;
       font-weight: 800;
-      margin-bottom: 8px;
-      background: linear-gradient(135deg, #ffffff 0%, #94a3b8 100%);
-      background-clip: text;
-      -webkit-background-clip: text;
-      color: transparent;
-      letter-spacing: -0.02em;
+      letter-spacing: -0.01em;
+      margin-bottom: 2px;
+      color: #f1f5f9;
     }
-    .pwa-install-box p {
-      font-size: 0.88rem;
-      color: #94a3b8;
-      line-height: 1.6;
-      margin-bottom: 24px;
-    }
-    .pwa-install-box .pwa-install-cta {
-      background: var(--primary-gradient);
-      color: #fff;
+    .pwa-toast-sub { font-size: 0.72rem; color: #94a3b8; line-height: 1.4; }
+    .pwa-toast-actions { display: flex; gap: 8px; flex-shrink: 0; }
+    .pwa-toast-actions button {
+      padding: 9px 16px;
+      border-radius: 999px;
       border: none;
-      border-radius: 999px;
-      padding: 18px 28px;
-      font-size: 1rem;
-      font-weight: 700;
-      cursor: pointer;
-      width: 100%;
-      margin-bottom: 12px;
-      box-shadow: 0 12px 32px rgba(16, 185, 129, 0.4);
-      transition: transform 0.2s, box-shadow 0.2s;
       font-family: inherit;
-    }
-    .pwa-install-box .pwa-install-cta:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 16px 40px rgba(16, 185, 129, 0.5);
-    }
-    .pwa-install-box .pwa-skip-btn {
-      background: transparent;
-      border: 1px solid rgba(255, 255, 255, 0.08);
-      color: #94a3b8;
-      border-radius: 999px;
-      padding: 12px 20px;
-      font-size: 0.82rem;
-      cursor: pointer;
-      width: 100%;
-      font-weight: 600;
-      font-family: inherit;
-      transition: all 0.2s;
-    }
-    .pwa-install-box .pwa-instructions {
-      background: rgba(255, 255, 255, 0.03);
-      border: 1px solid rgba(255, 255, 255, 0.06);
-      border-radius: 16px;
-      padding: 14px 16px;
-      margin-top: 16px;
-      text-align: left;
+      font-weight: 800;
       font-size: 0.75rem;
-      color: #94a3b8;
-      line-height: 1.7;
+      cursor: pointer;
+      transition: transform 0.15s, box-shadow 0.2s, background 0.2s;
+      width: auto;
+      margin: 0;
+      letter-spacing: 0.01em;
+      min-height: 36px;
     }
-    .pwa-install-box .pwa-instructions strong { color: #fbbf24; }
+    .pwa-toast-install {
+      background: var(--primary-gradient);
+      color: white;
+      box-shadow: 0 6px 16px rgba(16, 185, 129, 0.35);
+    }
+    .pwa-toast-install:hover { transform: translateY(-1px); box-shadow: 0 10px 24px rgba(16, 185, 129, 0.5); }
+    .pwa-toast-install:disabled { opacity: 0.7; cursor: wait; transform: none; }
+    .pwa-toast-dismiss {
+      background: rgba(255, 255, 255, 0.05);
+      color: #94a3b8;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+    }
+    .pwa-toast-dismiss:hover { background: rgba(255, 255, 255, 0.1); color: #f1f5f9; }
 
-    /* ============================================================
-       SIDEBAR
-       ============================================================ */
     .app-sidebar {
       position: fixed;
       left: 0;
@@ -493,9 +424,6 @@
       background: var(--surface-3);
     }
 
-    /* ============================================================
-       MAIN CONTENT
-       ============================================================ */
     .main-content {
       margin-left: var(--sidebar-width);
       padding: 20px 24px 100px;
@@ -512,9 +440,6 @@
       padding-left: 56px;
     }
 
-    /* ============================================================
-       STICKY HEADER
-       ============================================================ */
     .sticky-header {
       position: sticky;
       top: 0;
@@ -591,16 +516,13 @@
       border-radius: 6px;
     }
 
-    /* ============================================================
-       SECTIONS & CARDS
-       ============================================================ */
     .section { display: none; }
     .section.active {
       display: block;
-      animation: sectionFade 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+      animation: sectionFade 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     }
     @keyframes sectionFade {
-      from { opacity: 0; transform: translateY(10px); }
+      from { opacity: 0; transform: translateY(6px); }
       to { opacity: 1; transform: translateY(0); }
     }
 
@@ -611,7 +533,7 @@
       margin-bottom: 16px;
       border: 1px solid var(--border);
       box-shadow: var(--shadow-sm);
-      transition: box-shadow 0.3s, transform 0.3s, border-color 0.3s, background 0.3s;
+      transition: box-shadow 0.3s, border-color 0.3s, background 0.3s;
       position: relative;
       overflow: hidden;
     }
@@ -706,9 +628,6 @@
     .card.collapsed .card-body { display: none; }
     .card.collapsed .toggle-icon { transform: rotate(-90deg); }
 
-    /* ============================================================
-       FULLSCREEN OVERLAY
-       ============================================================ */
     .fullscreen-overlay {
       position: fixed;
       inset: 0;
@@ -793,9 +712,6 @@
     }
     .fullscreen-card .fs-body .card::before { display: none; }
 
-    /* ============================================================
-       MODALS
-       ============================================================ */
     .modal-overlay {
       position: fixed;
       inset: 0;
@@ -806,7 +722,7 @@
       z-index: 20000;
       visibility: hidden;
       opacity: 0;
-      transition: opacity 0.25s ease;
+      transition: opacity 0.2s ease, visibility 0.2s;
       pointer-events: none;
       padding: 20px;
       overflow-y: auto;
@@ -827,8 +743,8 @@
       text-align: center;
       border: 1px solid var(--border);
       box-shadow: var(--shadow-xl);
-      transform: scale(0.94);
-      transition: transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1), opacity 0.25s;
+      transform: scale(0.95);
+      transition: transform 0.3s cubic-bezier(0.34, 1.4, 0.64, 1), opacity 0.2s;
       opacity: 0;
       position: relative;
     }
@@ -941,9 +857,6 @@
       color: var(--danger);
     }
 
-    /* ============================================================
-       FORMS
-       ============================================================ */
     .form-group { margin-bottom: 0.9rem; }
     label {
       font-weight: 600;
@@ -988,9 +901,6 @@
     }
     .row-2col .form-group { flex: 1; min-width: 0; }
 
-    /* ============================================================
-       BUTTONS
-       ============================================================ */
     button {
       background: var(--primary-gradient);
       border: none;
@@ -1070,9 +980,6 @@
       box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3);
     }
 
-    /* ============================================================
-       AGREEMENT ITEMS
-       ============================================================ */
     .agreement-item {
       display: flex;
       justify-content: space-between;
@@ -1162,9 +1069,6 @@
       color: white;
     }
 
-    /* ============================================================
-       RESULT PANEL
-       ============================================================ */
     .result-panel {
       background: var(--surface-2);
       border-radius: var(--radius);
@@ -1206,17 +1110,8 @@
       background: var(--accent-gradient);
       box-shadow: 0 8px 32px rgba(245, 158, 11, 0.5);
       color: #1a1a1a !important;
-      animation: celebrate 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
-    }
-    @keyframes celebrate {
-      0% { transform: scale(0.95); }
-      50% { transform: scale(1.05); }
-      100% { transform: scale(1); }
     }
 
-    /* ============================================================
-       TABLE
-       ============================================================ */
     .history-table {
       overflow-x: auto;
       margin-top: 8px;
@@ -1330,9 +1225,6 @@
       transform: none;
     }
 
-    /* ============================================================
-       REMINDER
-       ============================================================ */
     .reminder-card {
       background: linear-gradient(135deg, var(--accent-soft), rgba(245, 158, 11, 0.05));
       border-left: 4px solid var(--accent);
@@ -1346,9 +1238,281 @@
     .reminder-card strong { color: var(--text); font-weight: 700; }
     .reminder-warning { color: var(--danger); font-weight: 700; }
 
+    .recovery-nudge {
+      background: linear-gradient(135deg, rgba(251, 191, 36, 0.12), rgba(251, 191, 36, 0.03));
+      border-left: 4px solid var(--accent);
+      padding: 14px 18px;
+      border-radius: var(--radius);
+      margin-top: 10px;
+      font-size: 0.86rem;
+      line-height: 1.65;
+      color: var(--text);
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+    }
+    .recovery-nudge .nudge-icon {
+      font-size: 1.4rem;
+      flex-shrink: 0;
+      line-height: 1;
+      margin-top: 2px;
+    }
+    .recovery-nudge .nudge-body { flex: 1; }
+    .recovery-nudge .nudge-title {
+      font-weight: 800;
+      color: var(--text);
+      margin-bottom: 4px;
+      font-size: 0.88rem;
+    }
+    .recovery-nudge .nudge-desc {
+      color: var(--text-2);
+      font-size: 0.82rem;
+    }
+    .recovery-nudge button {
+      margin-top: 10px;
+      width: auto;
+      padding: 8px 16px;
+      font-size: 0.75rem;
+      border-radius: var(--radius-full);
+      background: var(--accent-gradient);
+      color: #1a1a1a;
+      box-shadow: 0 4px 12px rgba(245, 158, 11, 0.3);
+      font-weight: 800;
+    }
+
+    .recovery-snapshot-warning {
+      background: rgba(239, 68, 68, 0.08);
+      border: 1.5px solid rgba(239, 68, 68, 0.3);
+      border-radius: var(--radius-sm);
+      padding: 12px 14px;
+      margin: 10px 0;
+      font-size: 0.78rem;
+      color: var(--text);
+      line-height: 1.6;
+      display: flex;
+      gap: 10px;
+      align-items: flex-start;
+    }
+    .recovery-snapshot-warning .warn-ico {
+      font-size: 1.1rem;
+      flex-shrink: 0;
+      line-height: 1;
+    }
+    .recovery-snapshot-warning strong { color: var(--danger); font-weight: 800; }
+
+    .recovery-timestamp {
+      font-size: 0.78rem;
+      color: var(--text-2);
+      margin-top: 10px;
+      padding: 10px 14px;
+      background: var(--surface-2);
+      border-radius: var(--radius-sm);
+      border: 1px solid var(--border);
+      line-height: 1.5;
+      display: flex;
+      align-items: flex-start;
+      gap: 8px;
+    }
+    .recovery-timestamp .ts-ico { flex-shrink: 0; }
+    .recovery-timestamp.stale {
+      background: rgba(251, 191, 36, 0.08);
+      border-color: rgba(251, 191, 36, 0.3);
+    }
+    .recovery-timestamp.stale strong { color: var(--accent); }
+
     /* ============================================================
-       CHART
+       NEW: CUSTOMERS SECTION (Portfolio View)
        ============================================================ */
+    .customers-summary-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 10px;
+      margin-bottom: 14px;
+    }
+    .customers-summary-card {
+      background: var(--surface-2);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 14px 16px;
+      text-align: center;
+    }
+    .customers-summary-card .cs-label {
+      font-size: 0.64rem;
+      color: var(--text-3);
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      margin-bottom: 6px;
+    }
+    .customers-summary-card .cs-value {
+      font-size: 1.15rem;
+      font-weight: 900;
+      letter-spacing: -0.03em;
+      font-variant-numeric: tabular-nums;
+    }
+    .customers-summary-card.cs-contract .cs-value { color: var(--text); }
+    .customers-summary-card.cs-paid .cs-value { color: var(--primary); }
+    .customers-summary-card.cs-outstanding .cs-value { color: var(--accent); }
+    .customers-summary-card.cs-count .cs-value { color: var(--info); }
+
+    .customers-filter-row {
+      display: flex;
+      gap: 6px;
+      flex-wrap: wrap;
+      margin-bottom: 12px;
+    }
+    .customers-filter-btn {
+      padding: 8px 16px;
+      border-radius: var(--radius-full);
+      border: 1.5px solid var(--border-strong);
+      background: transparent;
+      color: var(--text-2);
+      font-size: 0.75rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all 0.2s;
+      font-family: inherit;
+      width: auto;
+      margin: 0;
+      box-shadow: none;
+    }
+    .customers-filter-btn::before { display: none; }
+    .customers-filter-btn:hover {
+      border-color: var(--primary);
+      color: var(--primary);
+      background: var(--primary-soft);
+      transform: none;
+      box-shadow: none;
+    }
+    .customers-filter-btn.active {
+      background: var(--primary-gradient);
+      border-color: transparent;
+      color: white;
+      box-shadow: 0 4px 12px rgba(16, 185, 129, 0.3);
+    }
+    .customers-filter-btn.active::before { display: none; }
+
+    .customers-sort-row {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 12px;
+      font-size: 0.75rem;
+      color: var(--text-2);
+    }
+    .customers-sort-row label {
+      margin: 0;
+      font-size: 0.68rem;
+      color: var(--text-3);
+    }
+    .customers-sort-row select {
+      flex: 1;
+      padding: 9px 12px;
+      font-size: 0.78rem;
+      border-radius: var(--radius-full);
+      background: var(--surface-2);
+    }
+
+    .customer-row {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      align-items: center;
+      gap: 10px;
+      padding: 14px 16px;
+      background: var(--surface-2);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      margin-bottom: 8px;
+      cursor: pointer;
+      transition: all 0.2s;
+      position: relative;
+      overflow: hidden;
+    }
+    .customer-row:hover {
+      border-color: var(--primary);
+      background: var(--primary-soft);
+      transform: translateX(2px);
+    }
+    .customer-row.is-complete {
+      border-left: 3px solid var(--primary);
+    }
+    .customer-row.is-overdue {
+      border-left: 3px solid var(--danger);
+    }
+
+    .customer-info { min-width: 0; }
+    .customer-name {
+      font-weight: 700;
+      font-size: 0.9rem;
+      color: var(--text);
+      margin-bottom: 4px;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      letter-spacing: -0.01em;
+    }
+    .customer-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 4px 10px;
+      font-size: 0.7rem;
+      color: var(--text-3);
+      font-weight: 600;
+    }
+    .customer-meta .meta-item {
+      display: inline-flex;
+      align-items: center;
+      gap: 3px;
+    }
+    .customer-meta .meta-item strong {
+      color: var(--text-2);
+      font-weight: 700;
+      font-variant-numeric: tabular-nums;
+    }
+    .customer-balance {
+      text-align: right;
+      flex-shrink: 0;
+    }
+    .customer-balance .cb-label {
+      font-size: 0.58rem;
+      color: var(--text-3);
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      margin-bottom: 3px;
+    }
+    .customer-balance .cb-value {
+      font-size: 0.98rem;
+      font-weight: 900;
+      font-variant-numeric: tabular-nums;
+      letter-spacing: -0.02em;
+    }
+    .customer-balance .cb-value.is-outstanding { color: var(--accent); }
+    .customer-balance .cb-value.is-complete { color: var(--primary); }
+    .customer-balance .cb-value.is-overdue { color: var(--danger); }
+
+    .customers-empty {
+      text-align: center;
+      padding: 40px 20px;
+      color: var(--text-2);
+    }
+    .customers-empty .ce-icon {
+      font-size: 2.8rem;
+      margin-bottom: 10px;
+      opacity: 0.5;
+    }
+    .customers-empty .ce-title {
+      font-weight: 700;
+      font-size: 0.95rem;
+      margin-bottom: 6px;
+      color: var(--text);
+    }
+    .customers-empty .ce-desc {
+      font-size: 0.78rem;
+      color: var(--text-3);
+      line-height: 1.5;
+    }
+
     .chart-wrapper {
       position: relative;
       width: 100%;
@@ -1382,9 +1546,6 @@
     .chart-fallback.visible { display: block; }
     .chart-wrapper.hidden-when-no-chart { display: none; }
 
-    /* ============================================================
-       RANGE BUTTONS
-       ============================================================ */
     .range-buttons {
       display: flex;
       gap: 8px;
@@ -1400,9 +1561,6 @@
       border-radius: var(--radius-full);
     }
 
-    /* ============================================================
-       ACTION BUTTONS IN TABLE
-       ============================================================ */
     .action-row-btns {
       display: flex;
       gap: 4px;
@@ -1448,9 +1606,6 @@
       box-shadow: none;
     }
 
-    /* ============================================================
-       CELEBRATION
-       ============================================================ */
     #celebrationModal .modal-card {
       background: linear-gradient(180deg, var(--bg-elevated) 0%, rgba(245, 158, 11, 0.1) 100%);
       border: 1px solid rgba(245, 158, 11, 0.3);
@@ -1495,9 +1650,6 @@
       font-variant-numeric: tabular-nums;
     }
 
-    /* ============================================================
-       LOCK SCREEN
-       ============================================================ */
     #lockScreen {
       position: fixed;
       inset: 0;
@@ -1506,7 +1658,7 @@
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      padding: 32px 24px;
+      padding: 24px;
       background: radial-gradient(ellipse at 30% 20%, #0a0f1f, #050812 70%);
       overflow: hidden;
     }
@@ -1548,40 +1700,53 @@
       0%, 100% { transform: translate(0, 0) scale(1); }
       50% { transform: translate(-30px, 40px) scale(1.1); }
     }
+
     .lock-content {
       position: relative;
       z-index: 2;
       width: 100%;
-      max-width: 360px;
+      max-width: 340px;
       text-align: center;
-    }
-    .lock-logo-wrap {
-      position: relative;
-      display: inline-block;
-      margin-bottom: 24px;
-    }
-    .lock-logo {
-      width: 92px;
-      height: 92px;
-      background: var(--primary-gradient);
-      border-radius: 30px;
       display: flex;
+      flex-direction: column;
+      align-items: stretch;
+    }
+
+    .lock-hero {
+      transition: opacity 0.25s ease, max-height 0.3s ease, margin 0.3s ease;
+      max-height: 400px;
+      overflow: hidden;
+      opacity: 1;
+    }
+    body.keyboard-open .lock-hero {
+      opacity: 0;
+      max-height: 0;
+      margin-bottom: 0;
+    }
+
+    .lock-logo {
+      width: 76px;
+      height: 76px;
+      background: var(--primary-gradient);
+      border-radius: 24px;
+      display: inline-flex;
       align-items: center;
       justify-content: center;
-      font-size: 2.8rem;
+      font-size: 2.2rem;
       color: white;
-      box-shadow: 0 20px 60px rgba(16, 185, 129, 0.5), inset 0 2px 0 rgba(255, 255, 255, 0.15);
+      box-shadow: 0 16px 40px rgba(16, 185, 129, 0.45), inset 0 2px 0 rgba(255, 255, 255, 0.15);
       animation: logoPulse 4s ease-in-out infinite;
-      position: relative;
+      margin-bottom: 18px;
     }
     .lock-logo .lock-icon-svg {
-      font-size: 2.8rem;
+      font-size: 2.2rem;
       transition: transform 0.4s;
       line-height: 1;
     }
     .lock-logo .lock-icon-svg.unlocking { transform: scale(1.2) rotate(-10deg); }
+
     .lock-app-name {
-      font-size: 2.2rem;
+      font-size: 1.75rem;
       font-weight: 900;
       letter-spacing: -0.04em;
       background: linear-gradient(135deg, #ffffff 0%, #94a3b8 100%);
@@ -1591,47 +1756,58 @@
       margin-bottom: 4px;
     }
     .lock-app-sub {
-      font-size: 0.78rem;
+      font-size: 0.72rem;
       color: rgba(255, 255, 255, 0.4);
-      margin-bottom: 30px;
+      margin-bottom: 22px;
       letter-spacing: 0.14em;
       font-weight: 500;
       text-transform: uppercase;
     }
+
+    .lock-form {
+      display: flex;
+      flex-direction: column;
+      align-items: stretch;
+      gap: 10px;
+    }
+
     .lock-setup-badge {
       display: inline-block;
+      align-self: center;
       background: rgba(251, 191, 36, 0.12);
       border: 1px solid rgba(251, 191, 36, 0.25);
       border-radius: var(--radius-full);
-      padding: 6px 20px;
+      padding: 6px 18px;
       color: #fbbf24;
-      font-size: 0.7rem;
+      font-size: 0.68rem;
       font-weight: 700;
-      margin-bottom: 24px;
+      margin-bottom: 6px;
       letter-spacing: 0.06em;
     }
+
     .lock-input-wrap {
       position: relative;
-      margin-bottom: 14px;
+      display: flex;
+      align-items: stretch;
     }
     .lock-input {
       width: 100%;
       background: rgba(255, 255, 255, 0.04);
-      border: 1.5px solid rgba(255, 255, 255, 0.08);
-      border-radius: 18px;
-      padding: 18px 52px 18px 22px;
+      border: 1.5px solid rgba(255, 255, 255, 0.1);
+      border-radius: 16px;
+      padding: 16px 52px 16px 20px;
       font-size: 1rem;
       color: #fff;
       outline: none;
-      transition: all 0.25s;
+      transition: border-color 0.25s, background 0.25s, box-shadow 0.25s;
       letter-spacing: 0.02em;
       font-family: inherit;
       -webkit-appearance: none;
     }
-    .lock-input::placeholder { color: rgba(255, 255, 255, 0.25); }
+    .lock-input::placeholder { color: rgba(255, 255, 255, 0.28); }
     .lock-input:focus {
       border-color: #10b981;
-      background: rgba(16, 185, 129, 0.06);
+      background: rgba(16, 185, 129, 0.08);
       box-shadow: 0 0 0 4px rgba(16, 185, 129, 0.15);
     }
     .lock-input.error {
@@ -1641,19 +1817,20 @@
     }
     @keyframes lockShake {
       0%, 100% { transform: translateX(0); }
-      25% { transform: translateX(-8px); }
-      75% { transform: translateX(8px); }
+      25% { transform: translateX(-6px); }
+      75% { transform: translateX(6px); }
     }
+
     .lock-eye {
       position: absolute;
-      right: 16px;
+      right: 12px;
       top: 50%;
       transform: translateY(-50%);
       background: none;
       border: none;
       cursor: pointer;
-      color: rgba(255, 255, 255, 0.35);
-      font-size: 1.05rem;
+      color: rgba(255, 255, 255, 0.4);
+      font-size: 1rem;
       padding: 8px;
       margin: 0;
       width: auto;
@@ -1662,49 +1839,50 @@
       line-height: 1;
       transition: var(--transition);
     }
-    .lock-eye:hover {
-      color: rgba(255, 255, 255, 0.7);
-      background: rgba(255, 255, 255, 0.05);
-    }
+    .lock-eye:hover { color: rgba(255, 255, 255, 0.75); background: rgba(255, 255, 255, 0.05); }
+
     .lock-error {
       color: #f87171;
-      font-size: 0.78rem;
-      min-height: 20px;
-      margin-bottom: 10px;
+      font-size: 0.75rem;
+      min-height: 0;
+      line-height: 1.4;
       font-weight: 600;
+      text-align: left;
+      padding: 0 4px;
+      transition: min-height 0.2s;
     }
+    .lock-error:not(:empty) { min-height: 18px; }
+
     .lock-btn {
       width: 100%;
       background: var(--primary-gradient);
       border: none;
-      border-radius: 18px;
-      padding: 18px;
+      border-radius: 16px;
+      padding: 16px;
       color: #fff;
-      font-size: 1rem;
+      font-size: 0.98rem;
       font-weight: 800;
       cursor: pointer;
       letter-spacing: 0.02em;
-      box-shadow: 0 12px 40px rgba(16, 185, 129, 0.4);
-      margin-bottom: 18px;
+      box-shadow: 0 10px 32px rgba(16, 185, 129, 0.35);
       outline: none;
       font-family: inherit;
       position: relative;
       overflow: hidden;
-      transition: transform 0.2s, box-shadow 0.2s;
+      transition: transform 0.2s, box-shadow 0.2s, opacity 0.2s;
+      margin: 0;
     }
     .lock-btn::before {
       content: '';
       position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
+      top: 0; left: 0; right: 0;
       height: 50%;
       background: linear-gradient(180deg, rgba(255, 255, 255, 0.15), transparent);
       pointer-events: none;
     }
     .lock-btn:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 16px 48px rgba(16, 185, 129, 0.5);
+      transform: translateY(-1px);
+      box-shadow: 0 14px 40px rgba(16, 185, 129, 0.45);
     }
     .lock-btn:active { transform: scale(0.98); }
     .lock-btn.loading { opacity: 0.7; pointer-events: none; }
@@ -1712,16 +1890,16 @@
     .lock-footer-links {
       display: flex;
       justify-content: center;
-      gap: 20px;
+      gap: 16px;
       margin-top: 4px;
     }
     .lock-change, .lock-forgot {
-      color: rgba(255, 255, 255, 0.35);
-      font-size: 0.72rem;
+      color: rgba(255, 255, 255, 0.4);
+      font-size: 0.7rem;
       cursor: pointer;
       background: none;
       border: none;
-      padding: 6px 10px;
+      padding: 6px 8px;
       margin: 0;
       width: auto;
       border-radius: 8px;
@@ -1730,24 +1908,51 @@
       font-weight: 600;
       transition: color 0.2s;
     }
-    .lock-change:hover { color: rgba(255, 255, 255, 0.7); }
-    .lock-forgot { color: rgba(248, 113, 113, 0.5); }
+    .lock-change:hover { color: rgba(255, 255, 255, 0.75); }
+    .lock-forgot { color: rgba(248, 113, 113, 0.55); }
     .lock-forgot:hover { color: #f87171; }
+
+    .lock-hint {
+      color: rgba(255, 255, 255, 0.15);
+      font-size: 0.6rem;
+      margin-top: 8px;
+      letter-spacing: 0.05em;
+    }
+
     .lock-footer {
       position: absolute;
-      bottom: 24px;
+      bottom: 20px;
       left: 0;
       right: 0;
       text-align: center;
       color: rgba(255, 255, 255, 0.15);
-      font-size: 0.66rem;
+      font-size: 0.62rem;
       letter-spacing: 0.1em;
       z-index: 1;
+      transition: opacity 0.25s ease;
+    }
+    body.keyboard-open .lock-footer {
+      opacity: 0;
+      pointer-events: none;
     }
 
-    /* ============================================================
-       TOAST
-       ============================================================ */
+    @media (max-height: 700px), (max-width: 500px) {
+      .lock-logo { width: 60px; height: 60px; border-radius: 18px; font-size: 1.7rem; margin-bottom: 12px; }
+      .lock-logo .lock-icon-svg { font-size: 1.7rem; }
+      .lock-app-name { font-size: 1.4rem; }
+      .lock-app-sub { font-size: 0.66rem; margin-bottom: 14px; letter-spacing: 0.1em; }
+      .lock-input { padding: 14px 46px 14px 16px; font-size: 0.95rem; }
+      .lock-btn { padding: 14px; font-size: 0.92rem; }
+      .lock-content { max-width: 320px; }
+    }
+
+    @media (max-height: 600px) {
+      .lock-logo { width: 50px; height: 50px; border-radius: 15px; font-size: 1.4rem; margin-bottom: 8px; }
+      .lock-logo .lock-icon-svg { font-size: 1.4rem; }
+      .lock-app-name { font-size: 1.2rem; }
+      .lock-app-sub { display: none; }
+    }
+
     .toast-container {
       position: fixed;
       bottom: 24px;
@@ -1779,29 +1984,186 @@
       to { opacity: 1; transform: translateY(0) scale(1); }
     }
 
-    /* ============================================================
-       PDF OVERLAY
-       ============================================================ */
     .pdf-overlay {
       position: fixed;
       inset: 0;
-      background: rgba(5, 8, 18, 0.96);
+      background: rgba(5, 8, 18, 0.55);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
       z-index: 17000;
       display: flex;
       align-items: center;
       justify-content: center;
       padding: 24px;
-      animation: fadeIn 0.3s ease;
+      animation: pdfOverlayIn 0.4s ease;
     }
-    .pdf-overlay-inner {
-      text-align: center;
-      max-width: 360px;
-      width: 100%;
+    @keyframes pdfOverlayIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+    .pdf-overlay.closing {
+      animation: pdfOverlayOut 0.4s ease forwards;
+    }
+    @keyframes pdfOverlayOut {
+      to { opacity: 0; }
     }
 
-    /* ============================================================
-       LOADER
-       ============================================================ */
+    .pdf-modal {
+      background: linear-gradient(180deg, rgba(19, 26, 44, 0.98) 0%, rgba(13, 18, 32, 0.98) 100%);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 28px;
+      padding: 40px 32px 32px;
+      max-width: 380px;
+      width: 100%;
+      text-align: center;
+      box-shadow: 0 32px 96px rgba(0, 0, 0, 0.7), inset 0 1px 0 rgba(255, 255, 255, 0.05);
+      color: #f1f5f9;
+      position: relative;
+      overflow: hidden;
+      animation: pdfModalIn 0.5s cubic-bezier(0.34, 1.4, 0.64, 1);
+    }
+    @keyframes pdfModalIn {
+      from { transform: scale(0.92) translateY(16px); opacity: 0; }
+      to { transform: scale(1) translateY(0); opacity: 1; }
+    }
+
+    .pdf-modal::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: radial-gradient(circle at 30% 30%, rgba(16, 185, 129, 0.18), transparent 40%);
+      pointer-events: none;
+      animation: pdfGlow 6s ease-in-out infinite;
+    }
+    @keyframes pdfGlow {
+      0%, 100% { transform: translate(0, 0) scale(1); opacity: 0.6; }
+      50% { transform: translate(5%, 5%) scale(1.1); opacity: 1; }
+    }
+
+    .pdf-icon-wrap {
+      position: relative;
+      width: 100px;
+      height: 100px;
+      margin: 0 auto 22px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .pdf-ring {
+      position: absolute;
+      inset: 0;
+      border-radius: 50%;
+      border: 2px solid rgba(16, 185, 129, 0.4);
+      animation: pdfRing 2.6s ease-out infinite;
+    }
+    .pdf-ring:nth-child(2) { animation-delay: 0.86s; }
+    .pdf-ring:nth-child(3) { animation-delay: 1.72s; }
+    @keyframes pdfRing {
+      0% { transform: scale(0.6); opacity: 1; }
+      100% { transform: scale(1.3); opacity: 0; }
+    }
+    .pdf-icon {
+      position: relative;
+      width: 72px;
+      height: 72px;
+      background: var(--primary-gradient);
+      border-radius: 20px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2rem;
+      color: white;
+      box-shadow: 0 16px 40px rgba(16, 185, 129, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.25);
+      z-index: 2;
+      animation: pdfIconFloat 3.6s ease-in-out infinite;
+    }
+    @keyframes pdfIconFloat {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-6px); }
+    }
+
+    .pdf-title {
+      font-size: 1.25rem;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      margin-bottom: 6px;
+      background: linear-gradient(135deg, #ffffff 0%, #94a3b8 100%);
+      background-clip: text;
+      -webkit-background-clip: text;
+      color: transparent;
+      position: relative;
+      z-index: 1;
+    }
+    .pdf-subtitle {
+      font-size: 0.85rem;
+      color: #94a3b8;
+      margin-bottom: 24px;
+      min-height: 20px;
+      line-height: 1.5;
+      position: relative;
+      z-index: 1;
+      transition: opacity 0.4s ease;
+    }
+    .pdf-subtitle.swap { opacity: 0; }
+
+    .pdf-progress-track {
+      width: 100%;
+      height: 6px;
+      background: rgba(255, 255, 255, 0.06);
+      border-radius: 999px;
+      overflow: hidden;
+      margin-bottom: 14px;
+      position: relative;
+      z-index: 1;
+    }
+    .pdf-progress-bar {
+      height: 100%;
+      width: 0%;
+      background: var(--primary-gradient);
+      border-radius: 999px;
+      box-shadow: 0 0 12px rgba(16, 185, 129, 0.6);
+      transition: width 1s cubic-bezier(0.4, 0, 0.2, 1);
+      position: relative;
+      overflow: hidden;
+    }
+    .pdf-progress-bar::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+      animation: pdfShimmer 2s linear infinite;
+    }
+    @keyframes pdfShimmer {
+      from { transform: translateX(-100%); }
+      to { transform: translateX(100%); }
+    }
+
+    .pdf-progress-text {
+      font-size: 0.7rem;
+      font-weight: 700;
+      color: #64748b;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      position: relative;
+      z-index: 1;
+    }
+
+    .pdf-brand {
+      margin-top: 24px;
+      padding-top: 18px;
+      border-top: 1px solid rgba(255, 255, 255, 0.05);
+      font-size: 0.65rem;
+      color: #475569;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      font-weight: 700;
+      position: relative;
+      z-index: 1;
+    }
+
     .loader-overlay {
       position: fixed;
       inset: 0;
@@ -1810,7 +2172,7 @@
       align-items: center;
       justify-content: center;
       z-index: 3000;
-      transition: opacity 0.6s ease;
+      transition: opacity 0.3s ease;
       opacity: 1;
       visibility: visible;
     }
@@ -1851,9 +2213,6 @@
       font-weight: 500;
     }
 
-    /* ============================================================
-       RECOVERY CODE
-       ============================================================ */
     .recovery-code-box {
       background: var(--surface-2);
       border-radius: var(--radius);
@@ -1905,9 +2264,6 @@
       opacity: 0.7;
     }
 
-    /* ============================================================
-       ABOUT / LICENSE CARD
-       ============================================================ */
     .about-card {
       background: linear-gradient(135deg, var(--primary-soft), var(--accent-soft));
       border: 1px solid var(--border-strong);
@@ -1996,9 +2352,6 @@
 
     .backup-download-link { display: none; }
 
-    /* ============================================================
-       RESPONSIVE — narrow phones
-       ============================================================ */
     @media (max-width: 640px) {
       :root { --sidebar-width: 62px; }
 
@@ -2048,14 +2401,24 @@
       .about-features { grid-template-columns: 1fr; }
 
       .chart-wrapper { height: 220px; min-height: 220px; }
+
+      .pwa-install-toast {
+        flex-direction: column;
+        text-align: center;
+        padding: 16px 14px;
+        gap: 10px;
+      }
+      .pwa-toast-icon { align-self: center; }
+      .pwa-toast-body { text-align: center; }
+      .pwa-toast-actions { width: 100%; }
+      .pwa-toast-actions button { flex: 1; }
+
+      .customers-summary-grid { gap: 8px; }
+      .customers-summary-card { padding: 12px 10px; }
+      .customers-summary-card .cs-value { font-size: 1rem; }
     }
 
     @media (max-width: 400px) {
-      .lock-logo { width: 78px; height: 78px; font-size: 2.4rem; }
-      .lock-app-name { font-size: 1.9rem; }
-      .lock-input { padding: 14px 44px 14px 18px; font-size: 0.94rem; }
-      .lock-btn { padding: 16px; font-size: 0.94rem; }
-
       .modal-card .modal-close-btn {
         width: 30px;
         height: 30px;
@@ -2117,180 +2480,30 @@
       border-radius: 10px;
     }
     ::-webkit-scrollbar-thumb:hover { background: var(--text-3); }
-/* ============================================================
-   INSTALL GUIDE POPUP — auto-detects user's device
-   ============================================================ */
-.install-guide-overlay {
-  position: fixed;
-  inset: 0;
-  z-index: 45000;
-  background: rgba(5, 8, 18, 0.75);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  display: none;
-  align-items: center;
-  justify-content: center;
-  padding: 20px;
-  animation: fadeIn 0.3s ease;
-}
-.install-guide-overlay.visible { display: flex; }
-
-.install-guide-card {
-  background: var(--bg-elevated);
-  border-radius: var(--radius-xl);
-  padding: 32px 26px 26px;
-  max-width: 440px;
-  width: 100%;
-  max-height: 85vh;
-  overflow-y: auto;
-  border: 1px solid var(--border);
-  box-shadow: var(--shadow-xl);
-  position: relative;
-  animation: slideUp 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
-  color: var(--text);
-}
-.install-guide-card .close-btn {
-  position: sticky;
-  top: 0;
-  float: right;
-  background: var(--surface-3);
-  border: none;
-  border-radius: 12px;
-  width: 34px;
-  height: 34px;
-  font-size: 1rem;
-  color: var(--text-2);
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  transition: var(--transition);
-  outline: none;
-  font-family: inherit;
-  z-index: 10;
-}
-.install-guide-card .close-btn:hover {
-  background: var(--danger-soft);
-  color: var(--danger);
-  transform: rotate(90deg);
-}
-.install-guide-card .guide-icon {
-  font-size: 3rem;
-  text-align: center;
-  display: block;
-  margin-bottom: 12px;
-  clear: both;
-  -webkit-user-select: none;
-  user-select: none;
-}
-.install-guide-card h2 {
-  font-size: 1.3rem;
-  font-weight: 800;
-  text-align: center;
-  margin-bottom: 6px;
-  letter-spacing: -0.02em;
-  color: var(--text);
-}
-.install-guide-card .guide-sub {
-  text-align: center;
-  font-size: 0.85rem;
-  color: var(--text-2);
-  margin-bottom: 20px;
-  line-height: 1.6;
-}
-.install-guide-card .guide-step {
-  display: flex;
-  gap: 14px;
-  padding: 12px 0;
-  border-bottom: 1px solid var(--divider);
-  align-items: flex-start;
-}
-.install-guide-card .guide-step:last-of-type {
-  border-bottom: none;
-}
-.install-guide-card .step-num {
-  flex-shrink: 0;
-  width: 26px;
-  height: 26px;
-  border-radius: 50%;
-  background: var(--primary-gradient);
-  color: white;
-  font-size: 0.75rem;
-  font-weight: 800;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin-top: 2px;
-}
-.install-guide-card .step-text {
-  font-size: 0.85rem;
-  color: var(--text);
-  line-height: 1.65;
-  flex: 1;
-}
-.install-guide-card .step-text strong {
-  color: var(--primary);
-  font-weight: 700;
-}
-.install-guide-card .guide-actions {
-  display: flex;
-  gap: 10px;
-  margin-top: 20px;
-}
-.install-guide-card .guide-actions button {
-  margin-top: 0;
-  flex: 1;
-  padding: 12px;
-  font-size: 0.85rem;
-}
   </style>
 </head>
 <body>
 
   <div class="ambient-glow"></div>
-<!-- ============================================================
-     AUTO-DETECTING INSTALL GUIDE POPUP
-     ============================================================ -->
-<div class="install-guide-overlay" id="installGuideOverlay">
-  <div class="install-guide-card" id="installGuideCard">
-    <button class="close-btn" onclick="dismissInstallGuide()" aria-label="Close">✕</button>
-    <span class="guide-icon" id="guideIcon">📱</span>
-    <h2 id="guideTitle">Install PayMaster Pro</h2>
-    <p class="guide-sub" id="guideSubtitle">Get the full app experience — no browser bar, works offline.</p>
-    <div id="guideSteps">
-      <!-- Filled dynamically by JavaScript -->
+
+  <div class="pwa-install-toast" id="pwaInstallToast">
+    <div class="pwa-toast-icon">💼</div>
+    <div class="pwa-toast-body">
+      <div class="pwa-toast-title">Install PayPlan Ledger</div>
+      <div class="pwa-toast-sub" id="pwaToastSub">Full-screen app, works offline</div>
     </div>
-    <div class="guide-actions">
-      <button id="guidePrimaryBtn" onclick="handleGuidePrimary()" style="background:var(--primary-gradient);color:white;">
-        Install Now
-      </button>
-      <button class="outline" onclick="dismissInstallGuide()">
-        Not Now
-      </button>
+    <div class="pwa-toast-actions">
+      <button class="pwa-toast-install" id="pwaToastInstallBtn">Install</button>
+      <button class="pwa-toast-dismiss" id="pwaToastDismissBtn">Later</button>
     </div>
   </div>
-</div>
 
   <div class="sidebar-backdrop" id="sidebarBackdrop" onclick="toggleSidebar()"></div>
-
-  <div class="pwa-install-overlay" id="pwaInstallOverlay">
-    <div class="pwa-install-box">
-      <div class="pwa-logo">💼</div>
-      <h2>Install PayMaster Pro</h2>
-      <p>Install to your device for the full-screen app experience — no browser bars, no distractions.</p>
-      <button class="pwa-install-cta" id="pwaInstallCTA">📲 Install App</button>
-      <button class="pwa-skip-btn" id="pwaSkipBtn">Continue in browser</button>
-      <div class="pwa-instructions" id="pwaInstructions" style="display:none;">
-        <strong>📖 How to install manually:</strong><br>
-        <span id="pwaInstructionsText">Tap your browser menu (⋮ or ⋯) and choose <strong>"Add to Home screen"</strong> or <strong>"Install app"</strong>.</span>
-      </div>
-    </div>
-  </div>
 
   <div id="loaderOverlay" class="loader-overlay">
     <div class="loader-spinner">
       <div class="app-loader">💼</div>
-      <div class="loader-text">PayMaster Pro</div>
+      <div class="loader-text">PayPlan Ledger</div>
       <div class="loader-sub">Loading your data...</div>
     </div>
   </div>
@@ -2300,27 +2513,31 @@
     <div class="lock-orb lock-orb-2"></div>
     <div class="lock-orb lock-orb-3"></div>
     <div class="lock-content">
-      <div class="lock-logo-wrap">
+
+      <div class="lock-hero">
         <div class="lock-logo">
           <span class="lock-icon-svg" id="lockIconSvg">🔒</span>
         </div>
+        <div class="lock-app-name">PayPlan Ledger</div>
+        <div class="lock-app-sub" id="lockSubtitle">Hire Purchase Tracker</div>
       </div>
-      <div class="lock-app-name">PayMaster Pro</div>
-      <div class="lock-app-sub" id="lockSubtitle">Hire Purchase Tracker</div>
-      <div class="lock-setup-badge" id="lockSetupBadge" style="display:none;">✦ First time? Create your password</div>
-      <div class="lock-input-wrap">
-        <input type="password" id="passwordInput" class="lock-input" placeholder="Enter your password" autocomplete="current-password" maxlength="32">
-        <button class="lock-eye" id="lockEyeBtn" onclick="toggleLockEye()" type="button">👁</button>
+
+      <div class="lock-form">
+        <div class="lock-setup-badge" id="lockSetupBadge" style="display:none;">✦ First time? Create your password</div>
+        <div class="lock-input-wrap">
+          <input type="password" id="passwordInput" class="lock-input" placeholder="Enter your password" autocomplete="current-password" maxlength="32">
+          <button class="lock-eye" id="lockEyeBtn" onclick="toggleLockEye()" type="button">👁</button>
+        </div>
+        <div class="lock-error" id="passwordError"></div>
+        <button class="lock-btn" id="passwordSubmitBtn" onclick="handlePasswordSubmit()">Unlock</button>
+        <div class="lock-footer-links">
+          <button class="lock-change" id="passwordChangeBtn" onclick="openChangePasswordModal()">Change password</button>
+          <button class="lock-forgot" id="forgotPasswordBtn" onclick="openForgotPasswordModal()">Forgot password?</button>
+        </div>
+        <p class="lock-hint">Your data is stored securely on this device only.</p>
       </div>
-      <div class="lock-error" id="passwordError"></div>
-      <button class="lock-btn" id="passwordSubmitBtn" onclick="handlePasswordSubmit()">Unlock</button>
-      <div class="lock-footer-links">
-        <button class="lock-change" id="passwordChangeBtn" onclick="openChangePasswordModal()">Change password</button>
-        <button class="lock-forgot" id="forgotPasswordBtn" onclick="openForgotPasswordModal()">Forgot password?</button>
-      </div>
-      <p style="color:rgba(255,255,255,0.1);font-size:0.6rem;margin-top:12px;letter-spacing:0.05em;">Your data is stored securely on this device only.</p>
     </div>
-    <div class="lock-footer">PAYMASTER PRO • OFFLINE-FIRST</div>
+    <div class="lock-footer">PAYPLAN LEDGER • OFFLINE-FIRST</div>
   </div>
 
   <div id="changePasswordModal" class="modal-overlay">
@@ -2405,7 +2622,7 @@
     <div class="modal-card">
       <button class="modal-close-btn" onclick="document.getElementById('welcomeModal').classList.remove('active')">✕</button>
       <div style="font-size:2.8rem;margin-bottom:10px;">💼</div>
-      <div class="modal-title">Welcome to PayMaster Pro</div>
+      <div class="modal-title">Welcome to PayPlan Ledger</div>
       <p class="modal-sub">Professional hire purchase tracking — get started in seconds.</p>
       <div class="welcome-options">
         <button class="gold-btn" id="welcomeStartFresh">
@@ -2570,6 +2787,10 @@
           <span class="nav-icon-emoji">📋</span>
           <span class="nav-icon-label">Plans</span>
         </button>
+        <button data-section="customers" onclick="switchSection('customers')">
+          <span class="nav-icon-emoji">👥</span>
+          <span class="nav-icon-label">Customers</span>
+        </button>
         <button data-section="payment" onclick="switchSection('payment')">
           <span class="nav-icon-emoji">💳</span>
           <span class="nav-icon-label">Pay</span>
@@ -2598,7 +2819,7 @@
         <div class="top-bar">
           <div class="greeting">
             <span class="app-logo-sm">💼</span>
-            <h1><span class="highlight">PayMaster Pro</span> <span id="headerAgreementName">— Select</span></h1>
+            <h1><span class="highlight">PayPlan Ledger</span> <span id="headerAgreementName">— Select</span></h1>
           </div>
         </div>
       </div>
@@ -2630,6 +2851,7 @@
             <div style="text-align:center;padding:12px;background:var(--surface-2);border-radius:var(--radius);color:var(--text-2);font-size:0.85rem;font-weight:600;border:1px solid var(--border);">
               <span id="dashCurrentAgreement">No agreement selected</span>
             </div>
+            <div id="dashboardRecoveryNudge" style="display:none;"></div>
           </div>
         </div>
 
@@ -2678,6 +2900,85 @@
           <div class="card-body">
             <div id="agreementsList"></div>
             <button id="addAgreementBtn" class="outline small-btn" style="width:auto;margin-top:8px;">➕ New Agreement</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- NEW: CUSTOMERS SECTION -->
+      <div class="section" id="section-customers">
+        <div class="card" id="card-customers-summary">
+          <div class="card-header">
+            <h2><span class="card-icon">📊</span> Business Snapshot</h2>
+            <div class="header-actions">
+              <button class="expand-btn" onclick="openFullscreen('card-customers-summary','Business Snapshot')">⛶</button>
+              <span class="toggle-icon" onclick="event.stopPropagation();this.closest('.card').classList.toggle('collapsed')">▼</span>
+            </div>
+          </div>
+          <div class="card-body">
+            <div class="customers-summary-grid">
+              <div class="customers-summary-card cs-count">
+                <div class="cs-label">Customers</div>
+                <div class="cs-value" id="csTotalCustomers">0</div>
+              </div>
+              <div class="customers-summary-card cs-contract">
+                <div class="cs-label">Total Contract</div>
+                <div class="cs-value" id="csTotalContract">$0</div>
+              </div>
+              <div class="customers-summary-card cs-paid">
+                <div class="cs-label">Total Paid</div>
+                <div class="cs-value" id="csTotalPaid">$0</div>
+              </div>
+              <div class="customers-summary-card cs-outstanding">
+                <div class="cs-label">Outstanding</div>
+                <div class="cs-value" id="csTotalOutstanding">$0</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="card" id="card-customers-list">
+          <div class="card-header">
+            <h2><span class="card-icon">👥</span> All Customers</h2>
+            <div class="header-actions">
+              <button class="expand-btn" onclick="openFullscreen('card-customers-list','All Customers')">⛶</button>
+              <span class="toggle-icon" onclick="event.stopPropagation();this.closest('.card').classList.toggle('collapsed')">▼</span>
+            </div>
+          </div>
+          <div class="card-body">
+            <div class="search-wrap">
+              <div class="search-text-input">
+                <span class="search-icon">🔍</span>
+                <input type="text" id="customersSearchInput" placeholder="Search customers..." />
+              </div>
+              <button class="search-clear-btn" id="customersSearchClearBtn">✕ Clear</button>
+            </div>
+
+            <div class="customers-filter-row" id="customersFilterRow">
+              <button class="customers-filter-btn active" data-filter="all">All</button>
+              <button class="customers-filter-btn" data-filter="active">Active</button>
+              <button class="customers-filter-btn" data-filter="completed">Completed</button>
+              <button class="customers-filter-btn" data-filter="overdue">Overdue</button>
+            </div>
+
+            <div class="customers-sort-row">
+              <label for="customersSortSelect">Sort by</label>
+              <select id="customersSortSelect">
+                <option value="balance-desc">Balance (highest first)</option>
+                <option value="balance-asc">Balance (lowest first)</option>
+                <option value="name-asc">Name (A → Z)</option>
+                <option value="name-desc">Name (Z → A)</option>
+                <option value="contract-desc">Contract (highest first)</option>
+                <option value="paid-desc">Paid (highest first)</option>
+              </select>
+            </div>
+
+            <div id="customersList"></div>
+
+            <button id="customersPdfBtn" class="pdf-btn" style="margin-top:14px;">📥 Portfolio PDF</button>
+            <p style="font-size:0.7rem;margin-top:10px;color:var(--text-3);line-height:1.6;text-align:center;">
+              One report with every customer's balance<br>
+              <span style="color:var(--primary);font-weight:700;">Generate directly on your device</span>
+            </p>
           </div>
         </div>
       </div>
@@ -2783,17 +3084,19 @@
 
         <div class="about-card">
           <div class="about-logo">💼</div>
-          <div class="about-title">PayMaster Pro</div>
-          <div class="about-version">Version 14.0 • Single-User License</div>
+          <div class="about-title">PayPlan Ledger</div>
+          <div class="about-version">Version 15.0 • Single-User License</div>
           <div class="about-license-badge">✓ Offline-First</div>
           <p class="about-tagline">All your data stays on your device. No cloud, no subscriptions, no tracking.</p>
           <div class="about-features">
             <div class="about-feature"><span class="feat-icon">📋</span> Unlimited agreements</div>
+            <div class="about-feature"><span class="feat-icon">👥</span> Portfolio view</div>
             <div class="about-feature"><span class="feat-icon">💳</span> Unlimited payments</div>
             <div class="about-feature"><span class="feat-icon">📊</span> Offline PDF reports</div>
             <div class="about-feature"><span class="feat-icon">💾</span> Manual backup & restore</div>
             <div class="about-feature"><span class="feat-icon">🔄</span> Encrypted recovery codes</div>
             <div class="about-feature"><span class="feat-icon">🔒</span> Password protected</div>
+            <div class="about-feature"><span class="feat-icon">✈️</span> Works fully offline</div>
           </div>
         </div>
 
@@ -2880,10 +3183,17 @@
             <p style="font-size:0.8rem;color:var(--text-2);margin-bottom:10px;line-height:1.6;">
               Generate a recovery code to restore your data on any device. <strong>Keep this code safe!</strong>
             </p>
-            <button id="generateRecoveryBtn" class="gold-btn small-btn" style="width:auto;">🔑 Generate Recovery Code</button>
+            <div id="recoveryTimestampDisplay" class="recovery-timestamp"></div>
+            <button id="generateRecoveryBtn" class="gold-btn small-btn" style="width:auto;margin-top:12px;">🔑 Generate Recovery Code</button>
             <div id="recoveryCodeDisplay" style="display:none;margin-top:12px;">
               <p style="font-size:0.7rem;color:var(--text-3);margin-bottom:6px;">Your recovery code:</p>
               <div class="recovery-code-box"><span id="recoveryCodeText"></span></div>
+              <div class="recovery-snapshot-warning">
+                <span class="warn-ico">⚠️</span>
+                <div>
+                  <strong>This code is a snapshot.</strong> It contains only what exists in the app right now. Any payments or agreements you add later will <strong>NOT</strong> be included. Generate a new code regularly — we recommend once a week, or after any significant new data.
+                </div>
+              </div>
               <button id="copyRecoveryBtn" class="outline small-btn" style="width:auto;">📋 Copy Code</button>
             </div>
             <hr style="margin:16px 0;border:none;border-top:1px solid var(--divider);">
@@ -2895,7 +3205,7 @@
         </div>
       </div>
 
-      <footer>PAYMASTER PRO v14.0 • OFFLINE-FIRST • ALL DATA STORED LOCALLY</footer>
+      <footer>PAYPLAN LEDGER v15.0 • OFFLINE-FIRST • ALL DATA STORED LOCALLY</footer>
     </div>
   </div>
 
@@ -2913,62 +3223,90 @@
     function applyStandaloneMode() {
       if (isStandalone()) {
         document.body.classList.add('standalone-mode');
-        const overlay = document.getElementById('pwaInstallOverlay');
-        if (overlay) overlay.classList.remove('visible');
+        const toast = document.getElementById('pwaInstallToast');
+        if (toast) toast.classList.remove('visible');
       } else {
         document.body.classList.remove('standalone-mode');
       }
     }
 
     let deferredPrompt = null;
-    const pwaInstallOverlay = document.getElementById('pwaInstallOverlay');
-    const pwaInstallCTA = document.getElementById('pwaInstallCTA');
-    const pwaSkipBtn = document.getElementById('pwaSkipBtn');
-    const pwaInstructions = document.getElementById('pwaInstructions');
-    const pwaInstructionsText = document.getElementById('pwaInstructionsText');
+    let installToastTimeout = null;
 
-    function showInstallOverlay() {
+    const pwaInstallToast = document.getElementById('pwaInstallToast');
+    const pwaToastInstallBtn = document.getElementById('pwaToastInstallBtn');
+    const pwaToastDismissBtn = document.getElementById('pwaToastDismissBtn');
+    const pwaToastSub = document.getElementById('pwaToastSub');
+
+    function showInstallToast() {
       if (isStandalone()) return;
-      pwaInstallOverlay.classList.add('visible');
+      if (localStorage.getItem('pmInstallSkipped') === 'true') return;
+      if (!pwaInstallToast) return;
+      pwaInstallToast.classList.remove('hiding');
+      pwaInstallToast.classList.add('visible');
+      clearTimeout(installToastTimeout);
+      installToastTimeout = setTimeout(function() { hideInstallToast(false); }, 12000);
+    }
+
+    function hideInstallToast(remember) {
+      if (!pwaInstallToast) return;
+      pwaInstallToast.classList.add('hiding');
+      setTimeout(function() {
+        pwaInstallToast.classList.remove('visible');
+        pwaInstallToast.classList.remove('hiding');
+      }, 320);
+      clearTimeout(installToastTimeout);
+      if (remember) {
+        try { localStorage.setItem('pmInstallSkipped', 'true'); } catch (e) {}
+      }
     }
 
     window.addEventListener('beforeinstallprompt', (e) => {
       e.preventDefault();
       deferredPrompt = e;
-      if (!isStandalone()) setTimeout(showInstallOverlay, 800);
+      if (!isStandalone()) setTimeout(showInstallToast, 1500);
     });
 
-    pwaInstallCTA.addEventListener('click', async () => {
-      if (deferredPrompt) {
+    pwaToastInstallBtn.addEventListener('click', async () => {
+      if (!deferredPrompt) {
+        const ua = navigator.userAgent;
+        if (/iPhone|iPad|iPod/i.test(ua)) {
+          pwaToastSub.innerHTML = 'Tap <strong>Share (⬆️)</strong> → <strong>Add to Home Screen</strong>';
+        } else if (/Android/i.test(ua)) {
+          pwaToastSub.innerHTML = 'Tap <strong>⋮ menu</strong> → <strong>Install app</strong>';
+        } else {
+          pwaToastSub.innerHTML = 'Look for the <strong>install icon</strong> in your browser bar';
+        }
+        clearTimeout(installToastTimeout);
+        installToastTimeout = setTimeout(function() { hideInstallToast(false); }, 8000);
+        return;
+      }
+
+      pwaToastInstallBtn.disabled = true;
+      pwaToastInstallBtn.textContent = 'Installing...';
+
+      try {
         deferredPrompt.prompt();
         const { outcome } = await deferredPrompt.userChoice;
         if (outcome === 'accepted') {
           showToast('🎉 Installing...');
-          setTimeout(() => { pwaInstallOverlay.classList.remove('visible'); }, 800);
+          hideInstallToast(true);
         } else {
+          hideInstallToast(true);
           showToast('You can install anytime.');
         }
-        deferredPrompt = null;
-      } else {
-        pwaInstructions.style.display = 'block';
-        const ua = navigator.userAgent;
-        if (/iPhone|iPad|iPod/i.test(ua)) {
-          pwaInstructionsText.innerHTML = 'Tap <strong>Share (⬆️)</strong> in Safari → <strong>"Add to Home Screen"</strong>.';
-        } else if (/Android/i.test(ua)) {
-          pwaInstructionsText.innerHTML = 'Tap <strong>menu (⋮)</strong> → <strong>"Install app"</strong>.';
-        } else {
-          pwaInstructionsText.innerHTML = 'Look for the <strong>install icon</strong> in your browser address bar.';
-        }
+      } catch (e) {
+        hideInstallToast(true);
       }
+      deferredPrompt = null;
     });
 
-    pwaSkipBtn.addEventListener('click', () => {
-      pwaInstallOverlay.classList.remove('visible');
-      localStorage.setItem('pmInstallSkipped', 'true');
+    pwaToastDismissBtn.addEventListener('click', () => {
+      hideInstallToast(true);
     });
 
     window.addEventListener('appinstalled', () => {
-      pwaInstallOverlay.classList.remove('visible');
+      hideInstallToast(true);
       deferredPrompt = null;
       document.body.classList.add('standalone-mode');
       showToast('🎉 Installed successfully!');
@@ -3067,15 +3405,28 @@
     const editRecordSaveBtn = document.getElementById('editRecordSaveBtn');
     const editRecordCancelBtn = document.getElementById('editRecordCancelBtn');
 
+    // Customers section refs
+    const customersSearchInput = document.getElementById('customersSearchInput');
+    const customersSearchClearBtn = document.getElementById('customersSearchClearBtn');
+    const customersFilterRow = document.getElementById('customersFilterRow');
+    const customersSortSelect = document.getElementById('customersSortSelect');
+    const customersListDiv = document.getElementById('customersList');
+    const customersPdfBtn = document.getElementById('customersPdfBtn');
+    const csTotalCustomers = document.getElementById('csTotalCustomers');
+    const csTotalContract = document.getElementById('csTotalContract');
+    const csTotalPaid = document.getElementById('csTotalPaid');
+    const csTotalOutstanding = document.getElementById('csTotalOutstanding');
+
     let progressChart = null;
     const chartCanvas = document.getElementById('progressChart');
     const chartWrapper = document.getElementById('chartWrapper');
     let agreements = {};
     let currentAgreementId = null;
     let currentCurrencySymbol = '$';
-    let celebShownForAgreement = {};
+    let celebrationShown = {};
     let editRecordTarget = null;
     let fullscreenData = null;
+    let customersActiveFilter = 'all';
 
     const rafSchedule = (() => {
       let scheduled = new Map();
@@ -3125,13 +3476,64 @@
     }
 
     function getTodayDate() { return new Date().toISOString().slice(0, 10); }
-    function formatCurrency(v) { return `${currentCurrencySymbol}${Number(v).toLocaleString()}`; }
+
+    function formatCurrency(v) {
+      const n = Number(v) || 0;
+      return currentCurrencySymbol + n.toLocaleString('en-US', {
+        minimumFractionDigits: 0,
+        maximumFractionDigits: 2
+      });
+    }
+
     function calcTotals(recs) {
       if (!recs.length) return { totalPaid: 0, finalBalance: 0, lastHire: 0 };
       const s = [...recs].sort((a, b) => new Date(a.date) - new Date(b.date));
       let paid = 0, hire = 0;
       for (const r of s) { hire = r.totalHireAmount; paid += r.amountPaid; }
       return { totalPaid: paid, finalBalance: hire - paid, lastHire: hire };
+    }
+
+    // Compute the aggregate portfolio stats across all agreements
+    function calcPortfolioStats() {
+      let totalContract = 0;
+      let totalPaid = 0;
+      let totalOutstanding = 0;
+      let activeCount = 0;
+      let completedCount = 0;
+      let overdueCount = 0;
+
+      for (const id in agreements) {
+        const ag = agreements[id];
+        const hire = ag.totalHireAmount || 0;
+        const { totalPaid: tp } = calcTotals(ag.records);
+        const balance = hire - tp;
+
+        totalContract += hire;
+        totalPaid += tp;
+        if (balance > 0) {
+          totalOutstanding += balance;
+          activeCount++;
+          // Check for overdue schedule
+          const s = ag.schedule;
+          if (s && s.nextDueDate) {
+            const today = new Date(); today.setHours(0, 0, 0, 0);
+            const due = new Date(s.nextDueDate); due.setHours(0, 0, 0, 0);
+            if (due < today) overdueCount++;
+          }
+        } else if (hire > 0) {
+          completedCount++;
+        }
+      }
+
+      return {
+        totalContract,
+        totalPaid,
+        totalOutstanding,
+        activeCount,
+        completedCount,
+        overdueCount,
+        count: Object.keys(agreements).length
+      };
     }
 
     async function encryptData(data, password) {
@@ -3197,6 +3599,10 @@
         document.getElementById('recoveryCodeText').textContent = code;
         document.getElementById('recoveryCodeDisplay').style.display = 'block';
         recoveryPasswordModal.classList.remove('active');
+        const nowIso = new Date().toISOString();
+        localStorage.setItem('pmRecoveryLastGenerated', nowIso);
+        updateRecoveryTimestampDisplay();
+        updateRecoveryNudge();
         showToast('Recovery code generated!');
       }
     }
@@ -3221,10 +3627,13 @@
           currentAgreementId = data.currentAgreementId || Object.keys(agreements)[0];
           currentCurrencySymbol = data.currencySymbol || '$';
           if (data.theme) { document.body.classList.toggle('dark', data.theme === 'dark'); localStorage.setItem('pmTheme', data.theme); }
+          celebrationShown = {};
+          amountPaidInput.value = '';
           saveAgreements(); renderAgreementsList(); loadCurrentAgreementData();
           updatePreviewForCurrent(); updateChartForCurrent(); loadScheduleIntoForm();
           updateReminderDisplay(); refreshAllCurrencyDisplays();
           updateDashboardStats(); updateStickyHeader();
+          renderCustomers();
           document.getElementById('recoveryModal').classList.remove('active');
           showToast('✅ Data restored!');
         });
@@ -3232,6 +3641,99 @@
         recoveryError.textContent = e.message;
         recoveryError.style.display = 'block';
       }
+    }
+
+    function getDaysSinceLastRecovery() {
+      const iso = localStorage.getItem('pmRecoveryLastGenerated');
+      if (!iso) return null;
+      try {
+        const then = new Date(iso).getTime();
+        const now = Date.now();
+        const days = Math.floor((now - then) / 86400000);
+        return days;
+      } catch (e) { return null; }
+    }
+
+    function formatLastRecoveryDate() {
+      const iso = localStorage.getItem('pmRecoveryLastGenerated');
+      if (!iso) return null;
+      try {
+        const d = new Date(iso);
+        return d.toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' });
+      } catch (e) { return null; }
+    }
+
+    function updateRecoveryTimestampDisplay() {
+      const el = document.getElementById('recoveryTimestampDisplay');
+      if (!el) return;
+      const iso = localStorage.getItem('pmRecoveryLastGenerated');
+      if (!iso) {
+        el.className = 'recovery-timestamp stale';
+        el.innerHTML = '<span class="ts-ico">⚠️</span><div><strong>You have not generated a recovery code yet.</strong><br>If you lose this device, your data cannot be restored. Generate one now.</div>';
+        return;
+      }
+      const days = getDaysSinceLastRecovery();
+      const dateStr = formatLastRecoveryDate();
+      if (days === null) {
+        el.className = 'recovery-timestamp';
+        el.innerHTML = '<span class="ts-ico">🔑</span><div>Last generated: ' + dateStr + '</div>';
+        return;
+      }
+      if (days === 0) {
+        el.className = 'recovery-timestamp';
+        el.innerHTML = '<span class="ts-ico">✅</span><div><strong>Last generated: Today.</strong><br>Your latest data is protected.</div>';
+      } else if (days < 7) {
+        el.className = 'recovery-timestamp';
+        el.innerHTML = '<span class="ts-ico">🔑</span><div>Last generated: <strong>' + days + ' day' + (days === 1 ? '' : 's') + ' ago</strong> (' + dateStr + ').<br>Generate a fresh code soon to include your latest data.</div>';
+      } else {
+        el.className = 'recovery-timestamp stale';
+        el.innerHTML = '<span class="ts-ico">⚠️</span><div><strong>Last generated: ' + days + ' days ago</strong> (' + dateStr + ').<br>Your recent data is not included. Generate a fresh code now.</div>';
+      }
+    }
+
+    function updateRecoveryNudge() {
+      const el = document.getElementById('dashboardRecoveryNudge');
+      if (!el) return;
+      const iso = localStorage.getItem('pmRecoveryLastGenerated');
+      const days = getDaysSinceLastRecovery();
+
+      const hasData = Object.keys(agreements).length > 0;
+      if (!hasData) {
+        el.style.display = 'none';
+        el.innerHTML = '';
+        return;
+      }
+
+      if (!iso) {
+        el.style.display = 'block';
+        el.innerHTML =
+          '<div class="recovery-nudge">' +
+            '<span class="nudge-icon">🔑</span>' +
+            '<div class="nudge-body">' +
+              '<div class="nudge-title">Protect your data with a recovery code</div>' +
+              '<div class="nudge-desc">You have agreements and payments stored on this device. If you lose this phone, your records will be gone. Generate a recovery code now to keep them safe.</div>' +
+              '<button onclick="switchSection(\'settings\');setTimeout(function(){window.scrollTo(0,document.body.scrollHeight);},200);">Generate Recovery Code →</button>' +
+            '</div>' +
+          '</div>';
+        return;
+      }
+
+      if (days !== null && days >= 7) {
+        el.style.display = 'block';
+        el.innerHTML =
+          '<div class="recovery-nudge">' +
+            '<span class="nudge-icon">⚠️</span>' +
+            '<div class="nudge-body">' +
+              '<div class="nudge-title">Recovery code is ' + days + ' days old</div>' +
+              '<div class="nudge-desc">Your recovery code was last generated ' + days + ' days ago. Any payments or agreements you added since then are not included. Generate a fresh code to keep everything backed up.</div>' +
+              '<button onclick="switchSection(\'settings\');setTimeout(function(){window.scrollTo(0,document.body.scrollHeight);},200);">Update Recovery Code →</button>' +
+            '</div>' +
+          '</div>';
+        return;
+      }
+
+      el.style.display = 'none';
+      el.innerHTML = '';
     }
 
     function saveAgreements() {
@@ -3246,8 +3748,9 @@
       for (const id in agreements) {
         if (!agreements[id].schedule) agreements[id].schedule = { nextDueDate: '', installmentAmount: '', frequency: 'monthly' };
         if (!Array.isArray(agreements[id].records)) agreements[id].records = [];
+        if (typeof agreements[id].totalHireAmount !== 'number') agreements[id].totalHireAmount = 0;
       }
-      celebShownForAgreement = {};
+      celebrationShown = {};
     }
 
     function renderAgreementsList() {
@@ -3303,6 +3806,7 @@
         agreements[id].name = input.value.trim() || currentName;
         saveAgreements(); renderAgreementsList();
         if (currentAgreementId === id) updateStickyHeader();
+        renderCustomers();
         showToast('Agreement name updated');
       };
       input.addEventListener('blur', saveEdit, { once: true });
@@ -3314,11 +3818,14 @@
     function switchAgreement(id) {
       if (!agreements[id]) return;
       currentAgreementId = id;
+      amountPaidInput.value = '';
+      celebrationShown[id] = false;
       saveAgreements(); renderAgreementsList(); loadCurrentAgreementData();
       updatePreviewForCurrent(); updateChartForCurrent(); loadScheduleIntoForm();
       updateReminderDisplay(); refreshAllCurrencyDisplays();
       updateDashboardStats(); updateStickyHeader();
-      celebShownForAgreement[id] = false;
+      closeSidebarIfMobile();
+      setTimeout(() => { window.scrollTo({ top: 0, behavior: 'smooth' }); }, 50);
     }
     function deleteAgreement(id) {
       if (Object.keys(agreements).length === 1) { showToast('Cannot delete the only agreement.'); return; }
@@ -3326,10 +3833,13 @@
         if (!ok) return;
         delete agreements[id];
         if (currentAgreementId === id) currentAgreementId = Object.keys(agreements)[0];
+        amountPaidInput.value = '';
         saveAgreements(); renderAgreementsList(); loadCurrentAgreementData();
         updatePreviewForCurrent(); updateChartForCurrent(); loadScheduleIntoForm();
         updateReminderDisplay(); refreshAllCurrencyDisplays();
         updateDashboardStats(); updateStickyHeader();
+        updateRecoveryNudge();
+        renderCustomers();
         showToast('Agreement deleted');
       });
     }
@@ -3340,15 +3850,18 @@
     function createNewAgreement() {
       const name = newAgreementNameInput.value.trim() || 'New Agreement';
       const id = Date.now().toString();
-      agreements[id] = { name, records: [], totalHireAmount: 5000, schedule: { nextDueDate: '', installmentAmount: '', frequency: 'monthly' } };
+      agreements[id] = { name, records: [], totalHireAmount: 0, schedule: { nextDueDate: '', installmentAmount: '', frequency: 'monthly' } };
       currentAgreementId = id;
+      amountPaidInput.value = '';
+      celebrationShown[id] = false;
       saveAgreements(); renderAgreementsList(); loadCurrentAgreementData();
       updatePreviewForCurrent(); updateChartForCurrent(); loadScheduleIntoForm();
       updateReminderDisplay(); refreshAllCurrencyDisplays();
       updateDashboardStats(); updateStickyHeader();
+      updateRecoveryNudge();
+      renderCustomers();
       newAgreementModal.classList.remove('active');
       showToast(`"${name}" created`);
-      celebShownForAgreement[id] = false;
     }
     function updateStickyHeader() {
       if (currentAgreementId && agreements[currentAgreementId]) {
@@ -3373,6 +3886,166 @@
       } else {
         document.getElementById('dashCurrentAgreement').textContent = 'No agreement selected';
       }
+      updateRecoveryNudge();
+    }
+
+    // ============================================================
+    //  CUSTOMERS VIEW
+    // ============================================================
+    function renderCustomers() {
+      if (!customersListDiv) return;
+
+      // Update summary stats
+      const stats = calcPortfolioStats();
+      csTotalCustomers.textContent = stats.count;
+      csTotalContract.textContent = formatCurrency(stats.totalContract);
+      csTotalPaid.textContent = formatCurrency(stats.totalPaid);
+      csTotalOutstanding.textContent = formatCurrency(stats.totalOutstanding);
+
+      // Empty state
+      if (stats.count === 0) {
+        customersListDiv.innerHTML =
+          '<div class="customers-empty">' +
+            '<div class="ce-icon">👥</div>' +
+            '<div class="ce-title">No customers yet</div>' +
+            '<div class="ce-desc">Create your first agreement to see the portfolio view.</div>' +
+          '</div>';
+        return;
+      }
+
+      // Build rows
+      const searchTerm = (customersSearchInput ? customersSearchInput.value : '').toLowerCase().trim();
+      const sortMode = customersSortSelect ? customersSortSelect.value : 'balance-desc';
+
+      let rows = [];
+      for (const [id, ag] of Object.entries(agreements)) {
+        const hire = ag.totalHireAmount || 0;
+        const { totalPaid } = calcTotals(ag.records);
+        const balance = hire - totalPaid;
+
+        // Status
+        let status = 'active';
+        if (balance <= 0 && hire > 0) status = 'completed';
+
+        // Overdue check
+        const s = ag.schedule;
+        let isOverdue = false;
+        if (s && s.nextDueDate && balance > 0) {
+          const today = new Date(); today.setHours(0, 0, 0, 0);
+          const due = new Date(s.nextDueDate); due.setHours(0, 0, 0, 0);
+          if (due < today) { isOverdue = true; status = 'overdue'; }
+        }
+
+        rows.push({
+          id,
+          name: ag.name,
+          hire,
+          paid: totalPaid,
+          balance,
+          status,
+          isOverdue,
+          nextDueDate: s ? s.nextDueDate : ''
+        });
+      }
+
+      // Filter
+      if (customersActiveFilter !== 'all') {
+        rows = rows.filter(r => r.status === customersActiveFilter);
+      }
+
+      // Search
+      if (searchTerm) {
+        rows = rows.filter(r => r.name.toLowerCase().includes(searchTerm));
+      }
+
+      // Sort
+      rows.sort((a, b) => {
+        switch (sortMode) {
+          case 'balance-desc': return b.balance - a.balance;
+          case 'balance-asc': return a.balance - b.balance;
+          case 'name-asc': return a.name.localeCompare(b.name);
+          case 'name-desc': return b.name.localeCompare(a.name);
+          case 'contract-desc': return b.hire - a.hire;
+          case 'paid-desc': return b.paid - a.paid;
+          default: return 0;
+        }
+      });
+
+      if (rows.length === 0) {
+        customersListDiv.innerHTML =
+          '<div class="customers-empty">' +
+            '<div class="ce-icon">🔍</div>' +
+            '<div class="ce-title">No matching customers</div>' +
+            '<div class="ce-desc">Try a different search or filter.</div>' +
+          '</div>';
+        return;
+      }
+
+      // Build HTML
+      let html = '';
+      for (const r of rows) {
+        let rowClass = 'customer-row';
+        if (r.status === 'completed') rowClass += ' is-complete';
+        if (r.isOverdue) rowClass += ' is-overdue';
+
+        let balanceClass = 'cb-value';
+        if (r.isOverdue) balanceClass += ' is-overdue';
+        else if (r.balance <= 0) balanceClass += ' is-complete';
+        else balanceClass += ' is-outstanding';
+
+        html +=
+          '<div class="' + rowClass + '" onclick="switchAgreement(\'' + r.id + '\')">' +
+            '<div class="customer-info">' +
+              '<div class="customer-name">' + escapeHtmlPlain(r.name) + '</div>' +
+              '<div class="customer-meta">' +
+                '<span class="meta-item">📋 Contract <strong>' + formatCurrency(r.hire) + '</strong></span>' +
+                '<span class="meta-item">💵 Paid <strong>' + formatCurrency(r.paid) + '</strong></span>' +
+                (r.nextDueDate ? '<span class="meta-item">📅 Due <strong>' + r.nextDueDate + '</strong></span>' : '') +
+              '</div>' +
+            '</div>' +
+            '<div class="customer-balance">' +
+              '<div class="cb-label">Balance</div>' +
+              '<div class="' + balanceClass + '">' + formatCurrency(r.balance) + '</div>' +
+            '</div>' +
+          '</div>';
+      }
+      customersListDiv.innerHTML = html;
+    }
+
+    function escapeHtmlPlain(s) {
+      return s ? String(s).replace(/[&<>"']/g, function(m) {
+        return ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' })[m];
+      }) : '';
+    }
+
+    function initCustomerEvents() {
+      if (customersSearchInput) {
+        customersSearchInput.addEventListener('input', debounce(renderCustomers, 150), { passive: true });
+      }
+      if (customersSearchClearBtn) {
+        customersSearchClearBtn.addEventListener('click', () => {
+          if (customersSearchInput) customersSearchInput.value = '';
+          renderCustomers();
+        });
+      }
+      if (customersFilterRow) {
+        customersFilterRow.addEventListener('click', (e) => {
+          const btn = e.target.closest('.customers-filter-btn');
+          if (!btn) return;
+          const filter = btn.dataset.filter;
+          customersActiveFilter = filter;
+          customersFilterRow.querySelectorAll('.customers-filter-btn').forEach(b => {
+            b.classList.toggle('active', b.dataset.filter === filter);
+          });
+          renderCustomers();
+        });
+      }
+      if (customersSortSelect) {
+        customersSortSelect.addEventListener('change', renderCustomers);
+      }
+      if (customersPdfBtn) {
+        customersPdfBtn.addEventListener('click', handlePortfolioPDF);
+      }
     }
 
     function loadCurrentAgreementData() {
@@ -3380,10 +4053,11 @@
         historyBody.innerHTML = '<tr><td colspan="6" style="text-align:center;color:var(--text-3);padding:28px;">Select an agreement</td></tr>';
         summaryStats.innerHTML = '<span>Total Paid: 0</span><span>Remaining: 0</span>';
         totalHireAmountInput.value = '';
+        amountPaidInput.value = '';
         return;
       }
       const ag = agreements[currentAgreementId];
-      totalHireAmountInput.value = ag.totalHireAmount || 5000;
+      totalHireAmountInput.value = (ag.totalHireAmount && ag.totalHireAmount > 0) ? ag.totalHireAmount : '';
       renderHistoryTable(ag.records);
       updatePreviewForCurrent();
       updateChartForCurrent();
@@ -3436,12 +4110,15 @@
       saveAgreements(); renderHistoryTable(agreements[currentAgreementId].records);
       updatePreviewForCurrent(); updateChartForCurrent(); updateReminderDisplay();
       refreshAllCurrencyDisplays(); updateDashboardStats();
+      renderCustomers();
       showToast('Record deleted');
     }
+
     function updatePreviewForCurrent() {
       if (!currentAgreementId) return;
       const ag = agreements[currentAgreementId];
-      const hire = parseFloat(totalHireAmountInput.value) || 0;
+      const rawHire = totalHireAmountInput.value.trim();
+      const hire = rawHire === '' ? 0 : (parseFloat(rawHire) || 0);
       const add = parseFloat(amountPaidInput.value) || 0;
       const { totalPaid } = calcTotals(ag.records);
       const all = totalPaid + add, bal = hire - all;
@@ -3455,9 +4132,13 @@
         balancePreviewSpan.style.background = 'var(--primary-gradient)';
         balancePreviewSpan.classList.remove('zero-balance');
       }
-      if (bal <= 0 && all > 0 && currentAgreementId && !celebShownForAgreement[currentAgreementId]) {
-        celebShownForAgreement[currentAgreementId] = true;
-        showCelebration(ag.name || 'Agreement', all);
+      const agreementHasRecords = ag.records.length > 0;
+      const recordedPaid = totalPaid;
+      const recordedBalance = hire - recordedPaid;
+      const reallyComplete = agreementHasRecords && recordedPaid > 0 && recordedBalance <= 0;
+      if (reallyComplete && currentAgreementId && !celebrationShown[currentAgreementId]) {
+        celebrationShown[currentAgreementId] = true;
+        showCelebration(ag.name || 'Agreement', recordedPaid);
       }
     }
 
@@ -3465,7 +4146,7 @@
       celebAgreementName.textContent = name || 'this agreement';
       celebAmount.textContent = formatCurrency(amount);
       celebrationModal.classList.add('active');
-      if (currentAgreementId) celebShownForAgreement[currentAgreementId] = true;
+      if (currentAgreementId) celebrationShown[currentAgreementId] = true;
       if (navigator.vibrate) navigator.vibrate([50, 100, 50]);
     }
     function closeCelebration() { celebrationModal.classList.remove('active'); }
@@ -3503,6 +4184,7 @@
         saveAgreements(); renderHistoryTable(ag.records);
         updatePreviewForCurrent(); updateChartForCurrent(); updateReminderDisplay();
         refreshAllCurrencyDisplays();
+        renderCustomers();
         showToast('✅ Record updated');
       }
       closeEditRecordModal();
@@ -3527,7 +4209,8 @@
       const labels = sorted.map(r => r.date);
       let run = 0;
       const runs = sorted.map(r => { run += r.amountPaid; return run; });
-      const target = new Array(sorted.length).fill(ag.totalHireAmount || 5000);
+      const targetValue = (ag.totalHireAmount && ag.totalHireAmount > 0) ? ag.totalHireAmount : 0;
+      const target = new Array(sorted.length).fill(targetValue);
       const ctx = canvasEl.getContext('2d');
       if (!ctx) return;
       const isDark = document.body.classList.contains('dark');
@@ -3549,7 +4232,7 @@
         options: {
           responsive: true,
           maintainAspectRatio: false,
-          animation: { duration: 500, easing: 'easeOutQuart' },
+          animation: { duration: 400, easing: 'easeOutQuart' },
           plugins: {
             tooltip: {
               backgroundColor: isDark ? 'rgba(19,26,44,0.95)' : 'rgba(255,255,255,0.95)',
@@ -3565,7 +4248,7 @@
                 label: function(c) {
                   let l = c.dataset.label || '';
                   if (l) l += ': ';
-                  return l + currentCurrencySymbol + c.raw.toLocaleString();
+                  return l + currentCurrencySymbol + c.raw.toLocaleString('en-US');
                 }
               }
             },
@@ -3586,7 +4269,7 @@
               grid: { color: gridColor, drawBorder: false },
               ticks: {
                 color: textColor,
-                callback: v => currentCurrencySymbol + v.toLocaleString(),
+                callback: v => currentCurrencySymbol + v.toLocaleString('en-US'),
                 font: { size: 10, weight: '600' },
                 maxTicksLimit: 5
               }
@@ -3650,6 +4333,7 @@
       if (!nd || isNaN(ia) || ia <= 0) { showToast('Enter valid due date and amount'); return; }
       agreements[currentAgreementId].schedule = { nextDueDate: nd, installmentAmount: ia, frequency: frequencySelect.value };
       saveAgreements(); updateReminderDisplay();
+      renderCustomers();
       showToast('Schedule saved');
     }
     function updateReminderDisplay() {
@@ -3695,6 +4379,7 @@
       const ag = agreements[currentAgreementId];
       if (ag) { renderHistoryTable(ag.records); updateChartForCurrent(); updateReminderDisplay(); }
       updateDashboardStats();
+      renderCustomers();
     }
 
     function resetForm() { dateInput.value = getTodayDate(); amountPaidInput.value = ''; updatePreviewForCurrent(); showToast('Form reset'); }
@@ -3726,8 +4411,10 @@
       ag.records.sort((a, b) => new Date(a.date) - new Date(b.date));
       ag.totalHireAmount = hire;
       saveAgreements(); renderHistoryTable(ag.records);
+      amountPaidInput.value = '';
       updatePreviewForCurrent(); updateChartForCurrent(); updateReminderDisplay();
       refreshAllCurrencyDisplays(); updateDashboardStats();
+      renderCustomers();
       showToast(`✅ Saved — ${formatCurrency(paid)} on ${date}`);
       if (navigator.vibrate) navigator.vibrate(20);
     }
@@ -3736,26 +4423,131 @@
       showConfirm('Delete ALL payment records? This cannot be undone.', ok => {
         if (!ok) return;
         agreements[currentAgreementId].records = [];
+        amountPaidInput.value = '';
         saveAgreements(); renderHistoryTable([]);
         updatePreviewForCurrent(); updateChartForCurrent(); updateReminderDisplay();
         refreshAllCurrencyDisplays(); updateDashboardStats();
+        renderCustomers();
         showToast('History cleared');
       });
     }
 
-    function showPDFProgress(message) {
-      var existing = document.getElementById('pdfProgressOverlay');
-      if (existing) existing.remove();
-      var ov = document.createElement('div');
-      ov.id = 'pdfProgressOverlay';
-      ov.className = 'pdf-overlay';
-      ov.innerHTML = '<div class="pdf-overlay-inner"><div style="font-size:3.8rem;color:#10b981;margin-bottom:14px;">📄</div><div style="color:#10b981;font-size:1.1rem;font-weight:800;margin-bottom:6px;">' + message + '</div><div style="color:#94a3b8;font-size:0.8rem;">Generating PDF in your browser...</div></div>';
-      document.body.appendChild(ov);
+    let pdfOverlayEl = null;
+    let pdfProgressInterval = null;
+    let pdfMessageInterval = null;
+    let pdfMessageIndex = 0;
+    let pdfProgressValue = 0;
+
+    const PDF_MESSAGES = [
+      'Preparing your report...',
+      'Laying out the ledger...',
+      'Rendering payment table...',
+      'Calculating balances...',
+      'Finishing touches...'
+    ];
+
+    function showPDFProgress(title) {
+      hidePDFProgress(true);
+
+      pdfOverlayEl = document.createElement('div');
+      pdfOverlayEl.className = 'pdf-overlay';
+      pdfOverlayEl.id = 'pdfProgressOverlay';
+      pdfOverlayEl.innerHTML =
+        '<div class="pdf-modal">' +
+          '<div class="pdf-icon-wrap">' +
+            '<div class="pdf-ring"></div>' +
+            '<div class="pdf-ring"></div>' +
+            '<div class="pdf-ring"></div>' +
+            '<div class="pdf-icon">📄</div>' +
+          '</div>' +
+          '<div class="pdf-title">' + (title || 'Generating Report') + '</div>' +
+          '<div class="pdf-subtitle" id="pdfProgressMessage">' + PDF_MESSAGES[0] + '</div>' +
+          '<div class="pdf-progress-track">' +
+            '<div class="pdf-progress-bar" id="pdfProgressBar"></div>' +
+          '</div>' +
+          '<div class="pdf-progress-text" id="pdfProgressText">0% COMPLETE</div>' +
+          '<div class="pdf-brand">PAYPLAN LEDGER • OFFLINE-FIRST</div>' +
+        '</div>';
+
+      document.body.appendChild(pdfOverlayEl);
+
+      pdfProgressValue = 0;
+      pdfMessageIndex = 0;
+
+      pdfProgressInterval = setInterval(function() {
+        if (pdfProgressValue < 90) {
+          pdfProgressValue += Math.max(0.8, (90 - pdfProgressValue) * 0.025);
+          if (pdfProgressValue > 90) pdfProgressValue = 90;
+          updatePDFProgressUI(pdfProgressValue);
+        }
+      }, 220);
+
+      pdfMessageInterval = setInterval(function() {
+        pdfMessageIndex = (pdfMessageIndex + 1) % PDF_MESSAGES.length;
+        const msgEl = document.getElementById('pdfProgressMessage');
+        if (msgEl) {
+          msgEl.classList.add('swap');
+          setTimeout(function() {
+            if (msgEl) {
+              msgEl.textContent = PDF_MESSAGES[pdfMessageIndex];
+              msgEl.classList.remove('swap');
+            }
+          }, 400);
+        }
+      }, 2200);
     }
 
-    function hidePDFProgress() {
-      var ov = document.getElementById('pdfProgressOverlay');
-      if (ov) ov.remove();
+    function updatePDFProgressUI(value) {
+      const bar = document.getElementById('pdfProgressBar');
+      const text = document.getElementById('pdfProgressText');
+      if (bar) bar.style.width = value + '%';
+      if (text) text.textContent = Math.round(value) + '% COMPLETE';
+    }
+
+    function hidePDFProgress(immediate) {
+      if (pdfProgressInterval) { clearInterval(pdfProgressInterval); pdfProgressInterval = null; }
+      if (pdfMessageInterval) { clearInterval(pdfMessageInterval); pdfMessageInterval = null; }
+
+      if (!pdfOverlayEl) return Promise.resolve();
+
+      if (!immediate) {
+        updatePDFProgressUI(100);
+        const msgEl = document.getElementById('pdfProgressMessage');
+        if (msgEl) msgEl.textContent = 'Ready! Downloading...';
+      }
+
+      const el = pdfOverlayEl;
+      pdfOverlayEl = null;
+
+      return new Promise(function(resolve) {
+        const fadeDelay = immediate ? 0 : 700;
+        setTimeout(function() {
+          el.classList.add('closing');
+          setTimeout(function() {
+            if (el.parentNode) el.parentNode.removeChild(el);
+            resolve();
+          }, 400);
+        }, fadeDelay);
+      });
+    }
+
+    function triggerBlobDownload(blob, fileName) {
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = fileName;
+      a.style.display = 'none';
+      document.body.appendChild(a);
+
+      try {
+        a.click();
+      } catch (e) {
+        const evt = new MouseEvent('click', { view: window, bubbles: true, cancelable: true });
+        a.dispatchEvent(evt);
+      }
+
+      document.body.removeChild(a);
+      setTimeout(function() { URL.revokeObjectURL(url); }, 4000);
     }
 
     async function generatePDF(htmlContent, fileName) {
@@ -3771,7 +4563,7 @@
         return;
       }
 
-      showPDFProgress('Preparing report');
+      showPDFProgress('Generating Report');
 
       try {
         var container = document.createElement('div');
@@ -3826,73 +4618,355 @@
           }
         }
 
-        pdf.save(fileName || ('PayMaster_Report_' + new Date().toISOString().slice(0, 10) + '.pdf'));
-        hidePDFProgress();
+        var pdfBlob = pdf.output('blob');
+        if (!pdfBlob || pdfBlob.size === 0) {
+          throw new Error('PDF produced an empty file.');
+        }
+
+        const safeName = fileName || ('PayPlan_Ledger_Report_' + new Date().toISOString().slice(0, 10) + '.pdf');
+
+        await new Promise(function(r) { setTimeout(r, 150); });
+
+        await hidePDFProgress(false);
+        await new Promise(function(r) { setTimeout(r, 100); });
+
+        triggerBlobDownload(pdfBlob, safeName);
+
         showToast('✅ PDF downloaded');
+
       } catch (err) {
-        hidePDFProgress();
+        hidePDFProgress(true);
         console.error('PDF error:', err);
         showToast('❌ PDF failed: ' + err.message);
       }
     }
 
-    function escapeHtml(s) { return s ? s.replace(/[&<>]/g, function(m) { return ({ '&': '&amp;', '<': '&lt;', '>': '&gt;' })[m]; }) : ''; }
+    function escapeHtml(s) {
+      return s ? String(s).replace(/[&<>"']/g, function(m) {
+        return ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' })[m];
+      }) : '';
+    }
 
+    // ============================================================
+    //  REDESIGNED PDF BUILDERS
+    //  Tight, professional layout with consistent alignment
+    // ============================================================
     function buildPDF(records, mainTitle, period, agree, seller, buyer) {
       const sorted = [...records].sort((a, b) => new Date(a.date) - new Date(b.date));
-      let run = 0, rows = '', paid = 0, bal = 0, hire = 0;
+      let run = 0;
+      let rows = '';
+      let paid = 0, bal = 0, hire = 0;
+
       for (const r of sorted) {
-        run += r.amountPaid; paid = run; hire = r.totalHireAmount; bal = hire - run;
-        rows += '<tr><td>' + r.date + '</td><td style="text-align:right">' + formatCurrency(r.totalHireAmount) + '</td><td style="text-align:right">' + formatCurrency(r.amountPaid) + '</td><td style="text-align:right">' + formatCurrency(run) + '</td><td style="text-align:right;' + (bal < 0 ? 'color:#c2410c' : '') + '">' + formatCurrency(bal) + '</td></tr>';
+        run += r.amountPaid;
+        paid = run;
+        hire = r.totalHireAmount;
+        bal = hire - run;
+        rows +=
+          '<tr>' +
+            '<td class="c-date">' + r.date + '</td>' +
+            '<td class="c-num">' + formatCurrency(r.totalHireAmount) + '</td>' +
+            '<td class="c-num">' + formatCurrency(r.amountPaid) + '</td>' +
+            '<td class="c-num c-total">' + formatCurrency(run) + '</td>' +
+            '<td class="c-num ' + (bal < 0 ? 'c-negative' : 'c-balance') + '">' + formatCurrency(bal) + '</td>' +
+          '</tr>';
       }
-      return '<!DOCTYPE html><html><head><meta charset="UTF-8"><title>PayMaster Report</title><style>' +
-        'body{font-family:Arial,Helvetica,sans-serif;margin:0;padding:40px 32px;color:#14212b;background:#fff;width:730px}' +
-        'h1{color:#10b981;text-align:center;font-size:24px;border-bottom:3px solid #fbbf24;padding-bottom:12px;margin:0 0 8px 0}' +
-        '.sub{text-align:center;color:#666;font-size:12px;margin-bottom:18px}' +
-        'hr{border:none;border-top:2px solid #10b981;margin:12px 0}' +
-        '.meta{font-size:12px;margin-bottom:16px;line-height:1.8;color:#334155}' +
-        'table{width:100%;border-collapse:collapse;margin-bottom:18px;font-size:12px}' +
-        'th{background:#10b981;color:white;padding:10px;text-align:right;font-weight:700}' +
-        'th:first-child{text-align:left}' +
-        'td{border:1px solid #e2e8f0;padding:9px;color:#1e293b}' +
-        'td:not(:first-child){text-align:right}' +
-        'tr:nth-child(even){background:#f8fafc}' +
-        '.sum{width:45%;margin-left:auto;font-size:13px;border-collapse:collapse}' +
-        '.sum td{padding:8px 12px;border:none;font-weight:600}' +
-        '.sum tr:last-child{background:#e8f3ee;font-weight:bold;color:#10b981}' +
-        '.footer{text-align:center;margin-top:32px;font-size:10px;color:#94a3b8;border-top:1px solid #e2e8f0;padding-top:16px}' +
+
+      const now = new Date();
+      const generated = now.toLocaleString('en-US', {
+        year: 'numeric', month: 'short', day: 'numeric',
+        hour: '2-digit', minute: '2-digit'
+      });
+      const docId = 'PPL-' + now.getTime().toString(36).toUpperCase().slice(-8);
+
+      return '<!DOCTYPE html><html><head><meta charset="UTF-8"><title>PayPlan Ledger Report</title><style>' +
+        '*{box-sizing:border-box;margin:0;padding:0}' +
+        'body{font-family:-apple-system,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;background:#fff;color:#0f172a;padding:0;width:794px}' +
+        '.page{padding:56px 56px 48px;background:#fff;min-height:1123px;position:relative}' +
+        '.header{display:flex;align-items:center;justify-content:space-between;padding-bottom:18px;border-bottom:2px solid #10b981;margin-bottom:24px}' +
+        '.brand{display:flex;align-items:center;gap:12px}' +
+        '.brand-icon{width:44px;height:44px;background:linear-gradient(135deg,#10b981 0%,#059669 100%);border-radius:12px;display:flex;align-items:center;justify-content:center;color:#fff;font-size:22px;box-shadow:0 6px 16px rgba(16,185,129,0.35)}' +
+        '.brand-text{line-height:1.2}' +
+        '.brand-name{font-size:15px;font-weight:900;color:#0f172a;letter-spacing:-0.02em}' +
+        '.brand-sub{font-size:10px;font-weight:700;color:#10b981;letter-spacing:0.14em;text-transform:uppercase;margin-top:2px}' +
+        '.doc-meta{text-align:right;font-size:10px;color:#64748b;line-height:1.6}' +
+        '.doc-meta .id{font-family:"Courier New",monospace;color:#0f172a;font-weight:800;letter-spacing:0.02em}' +
+        '.doc-title{font-size:26px;font-weight:900;color:#0f172a;letter-spacing:-0.03em;margin-bottom:4px}' +
+        '.doc-sub{font-size:12px;color:#64748b;font-weight:600;margin-bottom:20px}' +
+        '.meta-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:22px}' +
+        '.meta-block{padding:14px 16px;background:#f8fafc;border:1px solid #e2e8f0;border-radius:12px}' +
+        '.meta-block .ml{font-size:9px;color:#64748b;font-weight:800;letter-spacing:0.12em;text-transform:uppercase;margin-bottom:4px}' +
+        '.meta-block .mv{font-size:13px;color:#0f172a;font-weight:700;line-height:1.4}' +
+        '.meta-block .mv.name{font-size:14px;font-weight:800;letter-spacing:-0.01em}' +
+        '.summary-row{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:24px}' +
+        '.sum-card{padding:16px;border-radius:12px;border:1px solid #e2e8f0;background:#fff;text-align:center}' +
+        '.sum-card.contract{background:#f1f5f9}' +
+        '.sum-card.paid{background:rgba(16,185,129,0.08);border-color:rgba(16,185,129,0.3)}' +
+        '.sum-card.remaining{background:rgba(245,158,11,0.08);border-color:rgba(245,158,11,0.3)}' +
+        '.sum-label{font-size:9px;font-weight:800;letter-spacing:0.1em;text-transform:uppercase;color:#64748b;margin-bottom:6px}' +
+        '.sum-card.paid .sum-label{color:#059669}' +
+        '.sum-card.remaining .sum-label{color:#c2410c}' +
+        '.sum-value{font-size:18px;font-weight:900;letter-spacing:-0.03em;color:#0f172a}' +
+        '.sum-card.paid .sum-value{color:#059669}' +
+        '.sum-card.remaining .sum-value{color:#c2410c}' +
+        '.section-label{font-size:10px;font-weight:800;letter-spacing:0.14em;text-transform:uppercase;color:#0f172a;margin-bottom:10px;padding-bottom:6px;border-bottom:1px solid #e2e8f0;display:flex;align-items:center;gap:6px}' +
+        '.section-label .dot{width:6px;height:6px;background:#10b981;border-radius:50%;display:inline-block}' +
+        'table.ledger{width:100%;border-collapse:collapse;margin-bottom:20px;font-size:11px}' +
+        'table.ledger thead th{background:#0f172a;color:#fff;padding:11px 14px;font-size:9px;font-weight:800;letter-spacing:0.1em;text-transform:uppercase;text-align:right}' +
+        'table.ledger thead th:first-child{text-align:left;border-top-left-radius:8px}' +
+        'table.ledger thead th:last-child{border-top-right-radius:8px}' +
+        'table.ledger tbody td{padding:11px 14px;border-bottom:1px solid #f1f5f9;color:#334155;vertical-align:middle}' +
+        'table.ledger tbody td.c-date{text-align:left;color:#0f172a;font-weight:600}' +
+        'table.ledger tbody td.c-num{text-align:right;font-variant-numeric:tabular-nums;font-weight:600}' +
+        'table.ledger tbody td.c-total{color:#0f172a;font-weight:800}' +
+        'table.ledger tbody td.c-balance{color:#c2410c;font-weight:800}' +
+        'table.ledger tbody td.c-negative{color:#dc2626;font-weight:800}' +
+        'table.ledger tbody tr:nth-child(even) td{background:#f8fafc}' +
+        'table.ledger tbody tr:last-child td{border-bottom:2px solid #10b981}' +
+        '.footer{margin-top:40px;padding-top:16px;border-top:1px solid #e2e8f0;display:flex;justify-content:space-between;align-items:center;font-size:9px;color:#94a3b8;letter-spacing:0.08em;text-transform:uppercase;font-weight:600}' +
+        '.footer .brand-mark{color:#10b981;font-weight:800}' +
+        '.empty-state{padding:40px 20px;text-align:center;background:#f8fafc;border-radius:12px;color:#94a3b8;font-size:12px}' +
         '</style></head><body>' +
-        '<h1>💼 ' + escapeHtml(mainTitle) + '</h1>' +
-        '<div class="sub">' + escapeHtml(agree) + ' • Hire Purchase Report</div>' +
-        '<hr>' +
-        '<div class="meta">' +
-          '<strong>Period:</strong> ' + escapeHtml(period) + '<br>' +
-          '<strong>Agreement:</strong> ' + escapeHtml(agree) + '<br>' +
-          '<strong>Seller:</strong> ' + escapeHtml(seller) + ' &nbsp;&nbsp; <strong>Buyer:</strong> ' + escapeHtml(buyer) + '<br>' +
-          '<strong>Generated:</strong> ' + new Date().toLocaleString() +
-        '</div>' +
-        '<table><thead><tr><th>Date</th><th>Contract</th><th>Paid</th><th>Total</th><th>Balance</th></tr></thead><tbody>' + rows + '</tbody></table>' +
-        '<table class="sum">' +
-          '<tr><td>Total Contract:</td><td>' + formatCurrency(hire) + '</td></tr>' +
-          '<tr><td>Total Paid:</td><td>' + formatCurrency(paid) + '</td></tr>' +
-          '<tr><td>Remaining:</td><td>' + formatCurrency(bal) + '</td></tr>' +
-        '</table>' +
-        '<div class="footer">PayMaster Pro • Hire Purchase Tracker • ' + new Date().toLocaleDateString() + '</div>' +
-        '</body></html>';
+        '<div class="page">' +
+
+          '<div class="header">' +
+            '<div class="brand">' +
+              '<div class="brand-icon">💼</div>' +
+              '<div class="brand-text">' +
+                '<div class="brand-name">PayPlan Ledger</div>' +
+                '<div class="brand-sub">Payment Statement</div>' +
+              '</div>' +
+            '</div>' +
+            '<div class="doc-meta">' +
+              '<div>Doc ID: <span class="id">' + docId + '</span></div>' +
+              '<div>' + generated + '</div>' +
+            '</div>' +
+          '</div>' +
+
+          '<div class="doc-title">' + escapeHtml(mainTitle) + '</div>' +
+          '<div class="doc-sub">' + escapeHtml(period) + '</div>' +
+
+          '<div class="meta-grid">' +
+            '<div class="meta-block">' +
+              '<div class="ml">Agreement / Account</div>' +
+              '<div class="mv name">' + escapeHtml(agree) + '</div>' +
+            '</div>' +
+            '<div class="meta-block">' +
+              '<div class="ml">Seller / Buyer</div>' +
+              '<div class="mv">' + escapeHtml(seller) + ' &nbsp;→&nbsp; ' + escapeHtml(buyer) + '</div>' +
+            '</div>' +
+          '</div>' +
+
+          '<div class="summary-row">' +
+            '<div class="sum-card contract">' +
+              '<div class="sum-label">Contract Amount</div>' +
+              '<div class="sum-value">' + formatCurrency(hire) + '</div>' +
+            '</div>' +
+            '<div class="sum-card paid">' +
+              '<div class="sum-label">Total Paid</div>' +
+              '<div class="sum-value">' + formatCurrency(paid) + '</div>' +
+            '</div>' +
+            '<div class="sum-card remaining">' +
+              '<div class="sum-label">Balance Remaining</div>' +
+              '<div class="sum-value">' + formatCurrency(bal) + '</div>' +
+            '</div>' +
+          '</div>' +
+
+          '<div class="section-label"><span class="dot"></span> Payment Ledger</div>' +
+          (rows ?
+            '<table class="ledger">' +
+              '<thead><tr>' +
+                '<th>Date</th>' +
+                '<th>Contract</th>' +
+                '<th>Paid</th>' +
+                '<th>Running Total</th>' +
+                '<th>Balance</th>' +
+              '</tr></thead>' +
+              '<tbody>' + rows + '</tbody>' +
+            '</table>'
+            :
+            '<div class="empty-state">No payment records in this report.</div>'
+          ) +
+
+          '<div class="footer">' +
+            '<span><span class="brand-mark">PayPlan Ledger</span> · Offline-First Tracker</span>' +
+            '<span>' + records.length + ' record' + (records.length === 1 ? '' : 's') + ' · Page 1</span>' +
+          '</div>' +
+
+        '</div></body></html>';
+    }
+
+    // Portfolio PDF — every customer, one report
+    function buildPortfolioPDF() {
+      const stats = calcPortfolioStats();
+      const now = new Date();
+      const generated = now.toLocaleString('en-US', {
+        year: 'numeric', month: 'short', day: 'numeric',
+        hour: '2-digit', minute: '2-digit'
+      });
+      const docId = 'PPL-' + now.getTime().toString(36).toUpperCase().slice(-8);
+
+      // Build rows — sorted by balance descending (largest first)
+      const rows = [];
+      for (const id in agreements) {
+        const ag = agreements[id];
+        const hire = ag.totalHireAmount || 0;
+        const { totalPaid } = calcTotals(ag.records);
+        const balance = hire - totalPaid;
+        let status = 'Active';
+        let statusClass = 'st-active';
+        if (balance <= 0 && hire > 0) {
+          status = 'Completed';
+          statusClass = 'st-complete';
+        } else {
+          const s = ag.schedule;
+          if (s && s.nextDueDate) {
+            const today = new Date(); today.setHours(0, 0, 0, 0);
+            const due = new Date(s.nextDueDate); due.setHours(0, 0, 0, 0);
+            if (due < today) {
+              status = 'Overdue';
+              statusClass = 'st-overdue';
+            }
+          }
+        }
+        rows.push({ name: ag.name, hire, paid: totalPaid, balance, status, statusClass });
+      }
+      rows.sort((a, b) => b.balance - a.balance);
+
+      let bodyRows = '';
+      for (const r of rows) {
+        bodyRows +=
+          '<tr>' +
+            '<td class="c-name">' + escapeHtml(r.name) + '</td>' +
+            '<td class="c-num">' + formatCurrency(r.hire) + '</td>' +
+            '<td class="c-num c-paid">' + formatCurrency(r.paid) + '</td>' +
+            '<td class="c-num c-balance">' + formatCurrency(r.balance) + '</td>' +
+            '<td class="c-status"><span class="pill ' + r.statusClass + '">' + r.status + '</span></td>' +
+          '</tr>';
+      }
+
+      return '<!DOCTYPE html><html><head><meta charset="UTF-8"><title>PayPlan Ledger — Portfolio</title><style>' +
+        '*{box-sizing:border-box;margin:0;padding:0}' +
+        'body{font-family:-apple-system,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;background:#fff;color:#0f172a;padding:0;width:794px}' +
+        '.page{padding:56px 56px 48px;background:#fff;min-height:1123px;position:relative}' +
+        '.header{display:flex;align-items:center;justify-content:space-between;padding-bottom:18px;border-bottom:2px solid #10b981;margin-bottom:24px}' +
+        '.brand{display:flex;align-items:center;gap:12px}' +
+        '.brand-icon{width:44px;height:44px;background:linear-gradient(135deg,#10b981 0%,#059669 100%);border-radius:12px;display:flex;align-items:center;justify-content:center;color:#fff;font-size:22px;box-shadow:0 6px 16px rgba(16,185,129,0.35)}' +
+        '.brand-text{line-height:1.2}' +
+        '.brand-name{font-size:15px;font-weight:900;color:#0f172a;letter-spacing:-0.02em}' +
+        '.brand-sub{font-size:10px;font-weight:700;color:#10b981;letter-spacing:0.14em;text-transform:uppercase;margin-top:2px}' +
+        '.doc-meta{text-align:right;font-size:10px;color:#64748b;line-height:1.6}' +
+        '.doc-meta .id{font-family:"Courier New",monospace;color:#0f172a;font-weight:800;letter-spacing:0.02em}' +
+        '.doc-title{font-size:26px;font-weight:900;color:#0f172a;letter-spacing:-0.03em;margin-bottom:4px}' +
+        '.doc-sub{font-size:12px;color:#64748b;font-weight:600;margin-bottom:22px}' +
+        '.summary-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:26px}' +
+        '.sum-card{padding:16px 14px;border-radius:12px;border:1px solid #e2e8f0;background:#fff;text-align:center}' +
+        '.sum-card.count{background:#f1f5f9}' +
+        '.sum-card.contract{background:#f1f5f9}' +
+        '.sum-card.paid{background:rgba(16,185,129,0.08);border-color:rgba(16,185,129,0.3)}' +
+        '.sum-card.outstanding{background:rgba(245,158,11,0.08);border-color:rgba(245,158,11,0.3)}' +
+        '.sum-label{font-size:9px;font-weight:800;letter-spacing:0.1em;text-transform:uppercase;color:#64748b;margin-bottom:6px}' +
+        '.sum-card.paid .sum-label{color:#059669}' +
+        '.sum-card.outstanding .sum-label{color:#c2410c}' +
+        '.sum-value{font-size:16px;font-weight:900;letter-spacing:-0.03em;color:#0f172a;font-variant-numeric:tabular-nums}' +
+        '.sum-card.paid .sum-value{color:#059669}' +
+        '.sum-card.outstanding .sum-value{color:#c2410c}' +
+        '.section-label{font-size:10px;font-weight:800;letter-spacing:0.14em;text-transform:uppercase;color:#0f172a;margin-bottom:10px;padding-bottom:6px;border-bottom:1px solid #e2e8f0;display:flex;align-items:center;gap:6px}' +
+        '.section-label .dot{width:6px;height:6px;background:#10b981;border-radius:50%;display:inline-block}' +
+        'table.portfolio{width:100%;border-collapse:collapse;margin-bottom:20px;font-size:11px}' +
+        'table.portfolio thead th{background:#0f172a;color:#fff;padding:11px 12px;font-size:9px;font-weight:800;letter-spacing:0.1em;text-transform:uppercase;text-align:right}' +
+        'table.portfolio thead th:first-child{text-align:left;border-top-left-radius:8px}' +
+        'table.portfolio thead th:last-child{border-top-right-radius:8px;text-align:center}' +
+        'table.portfolio tbody td{padding:11px 12px;border-bottom:1px solid #f1f5f9;color:#334155;vertical-align:middle}' +
+        'table.portfolio tbody td.c-name{text-align:left;color:#0f172a;font-weight:700;letter-spacing:-0.01em}' +
+        'table.portfolio tbody td.c-num{text-align:right;font-variant-numeric:tabular-nums;font-weight:600}' +
+        'table.portfolio tbody td.c-paid{color:#059669;font-weight:700}' +
+        'table.portfolio tbody td.c-balance{color:#c2410c;font-weight:800}' +
+        'table.portfolio tbody td.c-status{text-align:center}' +
+        'table.portfolio tbody tr:nth-child(even) td{background:#f8fafc}' +
+        'table.portfolio tbody tr:last-child td{border-bottom:2px solid #10b981}' +
+        '.pill{display:inline-block;padding:3px 10px;border-radius:999px;font-size:9px;font-weight:800;letter-spacing:0.06em;text-transform:uppercase}' +
+        '.pill.st-active{background:#dbeafe;color:#1e40af}' +
+        '.pill.st-complete{background:#d1fae5;color:#065f46}' +
+        '.pill.st-overdue{background:#fee2e2;color:#991b1b}' +
+        '.footer{margin-top:40px;padding-top:16px;border-top:1px solid #e2e8f0;display:flex;justify-content:space-between;align-items:center;font-size:9px;color:#94a3b8;letter-spacing:0.08em;text-transform:uppercase;font-weight:600}' +
+        '.footer .brand-mark{color:#10b981;font-weight:800}' +
+        '.empty-state{padding:60px 20px;text-align:center;background:#f8fafc;border-radius:12px;color:#94a3b8;font-size:12px}' +
+        '</style></head><body>' +
+        '<div class="page">' +
+
+          '<div class="header">' +
+            '<div class="brand">' +
+              '<div class="brand-icon">💼</div>' +
+              '<div class="brand-text">' +
+                '<div class="brand-name">PayPlan Ledger</div>' +
+                '<div class="brand-sub">Portfolio Statement</div>' +
+              '</div>' +
+            '</div>' +
+            '<div class="doc-meta">' +
+              '<div>Doc ID: <span class="id">' + docId + '</span></div>' +
+              '<div>' + generated + '</div>' +
+            '</div>' +
+          '</div>' +
+
+          '<div class="doc-title">Customer Balance Summary</div>' +
+          '<div class="doc-sub">All agreements · Sorted by outstanding balance</div>' +
+
+          '<div class="summary-grid">' +
+            '<div class="sum-card count">' +
+              '<div class="sum-label">Customers</div>' +
+              '<div class="sum-value">' + stats.count + '</div>' +
+            '</div>' +
+            '<div class="sum-card contract">' +
+              '<div class="sum-label">Total Contract</div>' +
+              '<div class="sum-value">' + formatCurrency(stats.totalContract) + '</div>' +
+            '</div>' +
+            '<div class="sum-card paid">' +
+              '<div class="sum-label">Total Paid</div>' +
+              '<div class="sum-value">' + formatCurrency(stats.totalPaid) + '</div>' +
+            '</div>' +
+            '<div class="sum-card outstanding">' +
+              '<div class="sum-label">Outstanding</div>' +
+              '<div class="sum-value">' + formatCurrency(stats.totalOutstanding) + '</div>' +
+            '</div>' +
+          '</div>' +
+
+          '<div class="section-label"><span class="dot"></span> Customer Balances</div>' +
+          (bodyRows ?
+            '<table class="portfolio">' +
+              '<thead><tr>' +
+                '<th>Customer / Agreement</th>' +
+                '<th>Contract</th>' +
+                '<th>Paid</th>' +
+                '<th>Balance</th>' +
+                '<th>Status</th>' +
+              '</tr></thead>' +
+              '<tbody>' + bodyRows + '</tbody>' +
+            '</table>'
+            :
+            '<div class="empty-state">No customers to report yet.</div>'
+          ) +
+
+          '<div class="footer">' +
+            '<span><span class="brand-mark">PayPlan Ledger</span> · Offline-First Tracker</span>' +
+            '<span>' + stats.count + ' customer' + (stats.count === 1 ? '' : 's') + ' · Page 1</span>' +
+          '</div>' +
+
+        '</div></body></html>';
     }
 
     async function requestPDF(records, baseTitle) {
       if (!currentAgreementId) { showToast('No agreement selected'); return; }
       const ag = agreements[currentAgreementId];
       const currentName = ag.name;
-      pdfReportTitle.value = localStorage.getItem('pmPdfTitle') || 'Payment Report';
+      pdfReportTitle.value = localStorage.getItem('pmPdfTitle') || 'Payment Statement';
       agreementNameInput.value = localStorage.getItem('pmPrintAgreement') || currentName;
       sellerNameInput.value = localStorage.getItem('pmPrintSeller') || 'Seller';
       buyerNameInput.value = localStorage.getItem('pmPrintBuyer') || 'Buyer';
       nameModal.classList.add('active');
       const yes = async () => {
         nameModal.classList.remove('active');
-        const reportTitle = pdfReportTitle.value.trim() || 'Payment Report';
+        const reportTitle = pdfReportTitle.value.trim() || 'Payment Statement';
         const newAgreementName = agreementNameInput.value.trim() || currentName;
         const seller = sellerNameInput.value.trim() || 'Seller';
         const buyer = buyerNameInput.value.trim() || 'Buyer';
@@ -3903,8 +4977,9 @@
         if (newAgreementName !== currentName) {
           agreements[currentAgreementId].name = newAgreementName;
           saveAgreements(); renderAgreementsList(); updateStickyHeader();
+          renderCustomers();
         }
-        await generatePDF(buildPDF(records, reportTitle, baseTitle, newAgreementName, seller, buyer), 'PayMaster_' + newAgreementName.replace(/[^a-z0-9]/gi, '_') + '.pdf');
+        await generatePDF(buildPDF(records, reportTitle, baseTitle, newAgreementName, seller, buyer), 'PayPlan_' + newAgreementName.replace(/[^a-z0-9]/gi, '_') + '.pdf');
         cl();
       };
       const no = () => { nameModal.classList.remove('active'); cl(); };
@@ -3912,6 +4987,13 @@
       nameModalConfirm.addEventListener('click', yes);
       nameModalCancel.addEventListener('click', no);
     }
+
+    async function handlePortfolioPDF() {
+      const stats = calcPortfolioStats();
+      if (stats.count === 0) { showToast('No customers to export'); return; }
+      await generatePDF(buildPortfolioPDF(), 'PayPlan_Portfolio_' + new Date().toISOString().slice(0, 10) + '.pdf');
+    }
+
     async function handleDownloadFull() {
       if (!currentAgreementId) { showToast('No agreement selected'); return; }
       const r = agreements[currentAgreementId].records;
@@ -3940,9 +5022,6 @@
       reportEndDate.value = new Date(n.getFullYear(), n.getMonth() + 1, 0).toISOString().slice(0, 10);
     }
 
-    /* ============================================================
-       THEME TOGGLE — light / dark mode restored
-       ============================================================ */
     function toggleTheme() {
       const isDark = document.body.classList.toggle('dark');
       themeToggle.textContent = isDark ? '☀️' : '🌙';
@@ -3978,7 +5057,7 @@
     function exportBackup() {
       const backup = {
         version: 1,
-        app: 'PayMaster Pro',
+        app: 'PayPlan Ledger',
         timestamp: new Date().toISOString(),
         deviceId: getDeviceId(),
         agreements: agreements,
@@ -3990,7 +5069,7 @@
       const blob = new Blob([jsonStr], { type: 'application/json' });
       const url = URL.createObjectURL(blob);
       backupDownloadLink.href = url;
-      backupDownloadLink.download = 'PayMaster_Backup_' + new Date().toISOString().slice(0, 10) + '.json';
+      backupDownloadLink.download = 'PayPlan_Ledger_Backup_' + new Date().toISOString().slice(0, 10) + '.json';
       backupDownloadLink.click();
       setTimeout(() => { URL.revokeObjectURL(url); }, 5000);
       showToast('💾 Backup downloaded');
@@ -4012,10 +5091,14 @@
               document.body.classList.add('dark');
             }
             localStorage.setItem('pmTheme', backup.theme || 'dark');
+            celebrationShown = {};
+            amountPaidInput.value = '';
             saveAgreements(); renderAgreementsList(); loadCurrentAgreementData();
             updatePreviewForCurrent(); updateChartForCurrent(); loadScheduleIntoForm();
             updateReminderDisplay(); refreshAllCurrencyDisplays();
             updateDashboardStats(); updateStickyHeader();
+            updateRecoveryNudge();
+            renderCustomers();
             welcomeModal.classList.remove('active');
             showToast('✅ Data restored');
           });
@@ -4041,10 +5124,10 @@
       const change = document.getElementById('passwordChangeBtn');
       const forgot = document.getElementById('forgotPasswordBtn');
       if (isFirstTime) {
-        subtitle.textContent = 'Create a password to protect your data';
+        subtitle.textContent = 'Create a password';
         badge.style.display = 'inline-block';
-        input.placeholder = 'Create a password (min 3 chars)';
-        btn.textContent = 'Create Password & Enter';
+        input.placeholder = 'Create a password';
+        btn.textContent = 'Create Password';
         change.style.display = 'none';
         forgot.style.display = 'none';
       } else {
@@ -4059,12 +5142,18 @@
       if (eyeBtn) eyeBtn.textContent = '👁';
       input.classList.remove('error');
       lock.classList.remove('hidden');
+      document.body.classList.remove('keyboard-open');
       _appUnlocked = false;
       btn.disabled = false; btn.classList.remove('loading');
-      setTimeout(() => { try { input.focus(); } catch (e) {} }, 200);
+      setTimeout(function() {
+        if (window.matchMedia('(max-width: 900px)').matches) {
+          try { input.focus(); } catch (e) {}
+        }
+      }, 350);
     }
     function hideLockScreen() {
       document.getElementById('lockScreen').classList.add('hidden');
+      document.body.classList.remove('keyboard-open');
       mainAppContainer.style.display = 'block';
       _appUnlocked = true;
       setTimeout(() => {
@@ -4072,6 +5161,9 @@
           updateChartForCurrent(); updateReminderDisplay();
           refreshAllCurrencyDisplays(); updateDashboardStats();
         }
+        updateRecoveryTimestampDisplay();
+        updateRecoveryNudge();
+        renderCustomers();
       }, 100);
     }
     function toggleLockEye() {
@@ -4147,13 +5239,11 @@
       if (loaderHidden) return;
       loaderHidden = true;
       loader.classList.add('fade-out');
-      setTimeout(() => { if (loader) loader.style.display = 'none'; }, 600);
+      setTimeout(() => { if (loader) loader.style.display = 'none'; }, 300);
     }
-    setTimeout(() => { if (!loaderHidden) hideLoader(); }, 3000);
+    if (storedPassword) setTimeout(function() { if (!loaderHidden) hideLoader(); }, 150);
+    else setTimeout(() => { if (!loaderHidden) hideLoader(); }, 1500);
 
-    /* ============================================================
-       SIDEBAR — auto-close after menu selection
-       ============================================================ */
     function toggleSidebar() {
       const isHidden = appSidebar.classList.toggle('sidebar-hidden');
       document.body.classList.toggle('sidebar-closed', isHidden);
@@ -4190,6 +5280,10 @@
       if (!card) { showToast('Cannot expand this section'); return; }
       let bodyElement = card.querySelector('.card-body');
       if (!bodyElement) { showToast('Cannot find card content'); return; }
+
+      if (progressChart) { progressChart.destroy(); progressChart = null; }
+      if (window._fsChart) { try { window._fsChart.destroy(); } catch (e) {} window._fsChart = null; }
+
       const parent = bodyElement.parentNode;
       const nextSibling = bodyElement.nextSibling;
       fullscreenData = { parent, nextSibling, cardId: elementId };
@@ -4199,18 +5293,29 @@
       fsTitle.textContent = title || 'Card';
       fullscreenOverlay.classList.add('active');
       document.body.style.overflow = 'hidden';
+
       setTimeout(() => {
         if (elementId === 'card-dashboard-chart') {
           const c = fsBody.querySelector('#progressChart');
-          if (c) { c.id = 'progressChartFS'; drawChart(c); }
+          if (c && typeof Chart !== 'undefined' && currentAgreementId && agreements[currentAgreementId]
+              && agreements[currentAgreementId].records.length > 0) {
+            c.id = 'progressChartFS';
+            window._fsChart = drawChart(c);
+          }
         }
       }, 50);
     }
+
     function closeFullscreen(e) {
       if (e && e.target && e.target !== e.currentTarget) return;
       if (!fullscreenData) return;
+
+      if (window._fsChart) { try { window._fsChart.destroy(); } catch (err) {} window._fsChart = null; }
+
       const bodyElement = fsBody.querySelector('.card-body');
       if (bodyElement) {
+        const fsCanvas = bodyElement.querySelector('#progressChartFS');
+        if (fsCanvas) fsCanvas.id = 'progressChart';
         fsBody.removeChild(bodyElement);
         if (fullscreenData.nextSibling) {
           fullscreenData.parent.insertBefore(bodyElement, fullscreenData.nextSibling);
@@ -4221,13 +5326,9 @@
       fullscreenData = null;
       fullscreenOverlay.classList.remove('active');
       document.body.style.overflow = '';
-      if (window._fsChart) { try { window._fsChart.destroy(); } catch (e) {} window._fsChart = null; }
       setTimeout(() => { updateChartForCurrent(); }, 30);
     }
 
-    /* ============================================================
-       NAVIGATION — with auto-close on mobile
-       ============================================================ */
     function switchSection(sectionId) {
       document.querySelectorAll('.section').forEach(el => el.classList.remove('active'));
       const target = document.getElementById('section-' + sectionId);
@@ -4241,25 +5342,34 @@
       if (sectionId === 'history' && currentAgreementId && agreements[currentAgreementId]) {
         renderHistoryTable(agreements[currentAgreementId].records);
       }
+      if (sectionId === 'settings') {
+        updateRecoveryTimestampDisplay();
+      }
+      if (sectionId === 'customers') {
+        renderCustomers();
+      }
 
-      // Auto-close sidebar on mobile for full-screen view
       closeSidebarIfMobile();
 
-      // Scroll to top after switching
       setTimeout(() => { window.scrollTo({ top: 0, behavior: 'smooth' }); }, 50);
     }
 
     function bindEvents() {
       const debouncedPreview = debounce(updatePreviewForCurrent, 50);
+
       totalHireAmountInput.addEventListener('input', () => {
         debouncedPreview();
         if (currentAgreementId && agreements[currentAgreementId]) {
-          agreements[currentAgreementId].totalHireAmount = parseFloat(totalHireAmountInput.value) || 5000;
-          saveAgreements();
-          rafSchedule('chart', updateChartForCurrent);
-          rafSchedule('reminder', updateReminderDisplay);
+          const parsed = parseFloat(totalHireAmountInput.value);
+          if (!isNaN(parsed) && parsed > 0) {
+            agreements[currentAgreementId].totalHireAmount = parsed;
+            saveAgreements();
+            rafSchedule('chart', updateChartForCurrent);
+            rafSchedule('reminder', updateReminderDisplay);
+          }
         }
       }, { passive: true });
+
       amountPaidInput.addEventListener('input', debouncedPreview, { passive: true });
 
       saveBtn.addEventListener('click', saveRecord);
@@ -4304,15 +5414,17 @@
 
       document.getElementById('welcomeStartFresh').addEventListener('click', () => {
         const id = Date.now().toString();
-        agreements = { [id]: { name: 'My First Agreement', records: [], totalHireAmount: 5000, schedule: { nextDueDate: '', installmentAmount: '', frequency: 'monthly' } } };
+        agreements = { [id]: { name: 'My First Agreement', records: [], totalHireAmount: 0, schedule: { nextDueDate: '', installmentAmount: '', frequency: 'monthly' } } };
         currentAgreementId = id;
+        amountPaidInput.value = '';
+        celebrationShown = {};
         saveAgreements(); renderAgreementsList(); loadCurrentAgreementData();
         updatePreviewForCurrent(); updateChartForCurrent(); loadScheduleIntoForm();
         updateReminderDisplay(); refreshAllCurrencyDisplays();
         updateDashboardStats(); updateStickyHeader();
+        renderCustomers();
         welcomeModal.classList.remove('active');
         showToast('Welcome! Start by adding a payment.');
-        celebShownForAgreement[id] = false;
       });
 
       document.getElementById('welcomeRestoreData').addEventListener('click', () => {
@@ -4350,14 +5462,12 @@
         if (e.target === this) switchSection('agreements');
       });
 
-      // Close sidebar when clicking backdrop or pressing Escape
       document.addEventListener('keydown', function(e) {
         if (e.key === 'Escape' && !appSidebar.classList.contains('sidebar-hidden')) {
           toggleSidebar();
         }
       });
 
-      // Close sidebar when tapping outside on mobile
       document.addEventListener('click', function(e) {
         if (window.innerWidth <= 900 &&
             !appSidebar.classList.contains('sidebar-hidden') &&
@@ -4366,6 +5476,8 @@
           toggleSidebar();
         }
       });
+
+      initCustomerEvents();
     }
 
     function initMainApp() {
@@ -4382,6 +5494,9 @@
       updateReminderDisplay();
       updateDashboardStats();
       updateStickyHeader();
+      updateRecoveryTimestampDisplay();
+      updateRecoveryNudge();
+      renderCustomers();
 
       if (Object.keys(agreements).length === 0) welcomeModal.classList.add('active');
 
@@ -4398,195 +5513,68 @@
     hideLockScreen = function() {
       _hideLockOriginal();
       if (!mainInitialized) { mainInitialized = true; hideLoader(); safeInitMainApp(); }
-      setTimeout(() => {
-        if (!isStandalone() && !localStorage.getItem('pmInstallSkipped')) {
-          showInstallOverlay();
+      setTimeout(function() {
+        if (!isStandalone() && deferredPrompt) {
+          showInstallToast();
         }
-      }, 1200);
+      }, 2000);
     };
 
     applyStandaloneMode();
+
+    (function initKeyboardAwareness() {
+      if (!window.visualViewport) return;
+
+      const initialHeight = window.visualViewport.height;
+      const isMobile = /Mobi|Android|iPhone|iPad|iPod/i.test(navigator.userAgent) ||
+                       window.matchMedia('(max-width: 900px)').matches;
+      if (!isMobile) return;
+
+      let rafPending = false;
+
+      function checkViewport() {
+        if (rafPending) return;
+        rafPending = true;
+        requestAnimationFrame(function() {
+          rafPending = false;
+          const currentHeight = window.visualViewport.height;
+          const threshold = initialHeight * 0.75;
+          const keyboardOpen = currentHeight < threshold;
+
+          if (keyboardOpen) {
+            document.body.classList.add('keyboard-open');
+          } else {
+            document.body.classList.remove('keyboard-open');
+          }
+        });
+      }
+
+      window.visualViewport.addEventListener('resize', checkViewport);
+      window.visualViewport.addEventListener('scroll', checkViewport);
+
+      const pwInput = document.getElementById('passwordInput');
+      if (pwInput) {
+        pwInput.addEventListener('focus', function() {
+          setTimeout(function() {
+            if (window.visualViewport.height < initialHeight * 0.75) {
+              document.body.classList.add('keyboard-open');
+            }
+          }, 250);
+        });
+        pwInput.addEventListener('blur', function() {
+          setTimeout(function() {
+            if (window.visualViewport.height >= initialHeight * 0.75) {
+              document.body.classList.remove('keyboard-open');
+            }
+          }, 250);
+        });
+      }
+    })();
 
     if (storedPassword) { showLockScreen(false); } else { showLockScreen(true); }
     document.getElementById('passwordInput').addEventListener('keypress', function(e) {
       if (e.key === 'Enter') handlePasswordSubmit();
     });
-// =====================================================================
-//  AUTO-DETECTING INSTALL GUIDE
-//  Shows the right instructions for the user's device
-// =====================================================================
-function detectPlatform() {
-  const ua = navigator.userAgent || '';
-  const isIOS = /iPhone|iPad|iPod/i.test(ua) ||
-                (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
-  const isAndroid = /Android/i.test(ua);
-  const isWindows = /Windows/i.test(ua);
-  const isMac = /Macintosh|Mac OS X/i.test(ua) && !isIOS;
-  const isLinux = /Linux/i.test(ua) && !isAndroid;
-  const isChromeOS = /CrOS/i.test(ua);
-  return { isIOS, isAndroid, isWindows, isMac, isLinux, isChromeOS };
-}
-
-function renderInstallGuide() {
-  const p = detectPlatform();
-  const icon = document.getElementById('guideIcon');
-  const title = document.getElementById('guideTitle');
-  const sub = document.getElementById('guideSubtitle');
-  const steps = document.getElementById('guideSteps');
-  const primary = document.getElementById('guidePrimaryBtn');
-
-  let html = '';
-  let primaryLabel = 'Install Now';
-  let primaryAction = 'default';
-
-  if (p.isIOS) {
-    icon.textContent = '🍎';
-    title.textContent = 'Install on iPhone / iPad';
-    sub.textContent = 'Apple doesn\'t allow APK installs — but Safari gives you the same fullscreen app experience.';
-    html = `
-      <div class="guide-step">
-        <div class="step-num">1</div>
-        <div class="step-text">Tap the <strong>Share</strong> button at the bottom of Safari.</div>
-      </div>
-      <div class="guide-step">
-        <div class="step-num">2</div>
-        <div class="step-text">Scroll down and tap <strong>"Add to Home Screen"</strong>.</div>
-      </div>
-      <div class="guide-step">
-        <div class="step-num">3</div>
-        <div class="step-text">Name it <strong>PayMaster Pro</strong> → tap <strong>Add</strong>.</div>
-      </div>
-      <div class="guide-step">
-        <div class="step-num">4</div>
-        <div class="step-text">Open the new icon from your home screen — it runs fullscreen, offline.</div>
-      </div>
-    `;
-    primaryLabel = 'Got it';
-    primaryAction = 'dismiss';
-  } else if (p.isAndroid) {
-    icon.textContent = '🤖';
-    title.textContent = 'Install on Android';
-    sub.textContent = 'Get the full app experience — no browser bar.';
-    html = `
-      <div class="guide-step">
-        <div class="step-num">1</div>
-        <div class="step-text">Tap the <strong>⋮ menu</strong> in Chrome (top right).</div>
-      </div>
-      <div class="guide-step">
-        <div class="step-num">2</div>
-        <div class="step-text">Tap <strong>"Install app"</strong>. If not available, choose <strong>"Add to Home screen"</strong>.</div>
-      </div>
-      <div class="guide-step">
-        <div class="step-num">3</div>
-        <div class="step-text">Confirm → the app appears on your home screen.</div>
-      </div>
-      <div class="guide-step">
-        <div class="step-num">4</div>
-        <div class="step-text">For the best experience, use the <strong>APK</strong> from your Selar download instead — it opens with no browser at all.</div>
-      </div>
-    `;
-    primaryLabel = 'Install App';
-    primaryAction = 'prompt';
-  } else if (p.isWindows || p.isMac || p.isLinux || p.isChromeOS) {
-    icon.textContent = '💻';
-    title.textContent = 'Install on Desktop';
-    sub.textContent = 'Install PayMaster Pro as a desktop app with its own window and icon.';
-    html = `
-      <div class="guide-step">
-        <div class="step-num">1</div>
-        <div class="step-text">Look for the <strong>install icon</strong> in your browser's address bar (a small monitor with a down arrow).</div>
-      </div>
-      <div class="guide-step">
-        <div class="step-num">2</div>
-        <div class="step-text">If you don't see it, open the browser menu (⋮ or •••) → <strong>"Install PayMaster Pro"</strong>.</div>
-      </div>
-      <div class="guide-step">
-        <div class="step-num">3</div>
-        <div class="step-text">Confirm. The app installs to your Start Menu / Applications folder.</div>
-      </div>
-      <div class="guide-step">
-        <div class="step-num">4</div>
-        <div class="step-text">Open it from there any time — no browser bar, works offline.</div>
-      </div>
-    `;
-    primaryLabel = 'Install App';
-    primaryAction = 'prompt';
-  } else {
-    // Fallback
-    icon.textContent = '📲';
-    title.textContent = 'Install PayMaster Pro';
-    sub.textContent = 'Install to your device for the fullscreen app experience.';
-    html = `
-      <div class="guide-step">
-        <div class="step-num">1</div>
-        <div class="step-text">Open your browser menu and look for <strong>"Install app"</strong> or <strong>"Add to Home screen"</strong>.</div>
-      </div>
-      <div class="guide-step">
-        <div class="step-num">2</div>
-        <div class="step-text">Tap it and confirm. The app opens fullscreen from your home screen or app list.</div>
-      </div>
-    `;
-  }
-
-  steps.innerHTML = html;
-  primary.textContent = primaryLabel;
-  primary.dataset.action = primaryAction;
-}
-
-function handleGuidePrimary() {
-  const primary = document.getElementById('guidePrimaryBtn');
-  const action = primary.dataset.action;
-
-  if (action === 'dismiss') {
-    dismissInstallGuide();
-    return;
-  }
-
-  if (action === 'prompt' && deferredPrompt) {
-    // Trigger the native install prompt
-    deferredPrompt.prompt();
-    deferredPrompt.userChoice.then(function(choice) {
-      if (choice.outcome === 'accepted') {
-        showToast('🎉 Installing...');
-        dismissInstallGuide();
-      } else {
-        showToast('You can install anytime from the browser menu.');
-      }
-      deferredPrompt = null;
-    });
-    return;
-  }
-
-  // Fallback — just dismiss
-  dismissInstallGuide();
-}
-
-function dismissInstallGuide() {
-  const overlay = document.getElementById('installGuideOverlay');
-  if (overlay) overlay.classList.remove('visible');
-  try { localStorage.setItem('pmInstallGuideSeen', 'true'); } catch (e) {}
-}
-
-function maybeShowInstallGuide() {
-  // Don't show if:
-  //  - Already in standalone mode (installed)
-  //  - User has already seen it
-  //  - User previously skipped the PWA install overlay
-  if (isStandalone()) return;
-  try {
-    if (localStorage.getItem('pmInstallGuideSeen') === 'true') return;
-    if (localStorage.getItem('pmInstallSkipped') === 'true') return;
-  } catch (e) {}
-
-  renderInstallGuide();
-  const overlay = document.getElementById('installGuideOverlay');
-  if (overlay) overlay.classList.add('visible');
-}
-
-// Trigger the guide a few seconds after the app is unlocked
-setTimeout(function() {
-  try { maybeShowInstallGuide(); } catch (e) {}
-}, 2500);
   </script>
 </body>
 </html>
